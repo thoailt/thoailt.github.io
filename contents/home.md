@@ -1,16 +1,16 @@
-He is currently pursuing a Master's Degree in computer science, at School of Computer Science and Technology, China University of Mining and Technology.
+I'm a teaching assistant and studying for a master's degree at the Faculty of Information Technology, Ho Chi Minh City University of Education, Vietnam.
 
 #### GitHub
-[![senli1073](https://img.shields.io/badge/senli1073-github-blue?logo=github)](https://github.com/senli1073)
+[![thoailt](https://img.shields.io/badge/thoailt-github-blue?logo=github)](https://github.com/thoailt)
 
 
 #### Email
-sli[at]cumt.edu.cn
+thoailt[at]hcmue.edu.vn
 
 #### Education
-2022.08 - present, Computer Science and Technology, School of Computer Science and Technology, China University of Mining and Technology.
+2023.10 - present, Computer Science (Research), Faculty of Information Technology, Ho Chi Minh City University of Education, Vietnam.
 
-2018.08 - 2022.06, Data Science and Big Data Technology, School of Computer Science and Technology, China University of Mining and Technology.
+2019.09 - 2023.06, Information Technology (Software Engineer), Faculty of Information Technology, Ho Chi Minh City University of Education, Vietnam.
 
 #### Research Interests
-Deep Learning, Artificial Intelligence Seismology, Mine Microseismic.
+Deep Learning, Satellite.

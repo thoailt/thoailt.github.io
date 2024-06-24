@@ -1,9 +1,5 @@
-- First-prize Academic Scholarship, 2023.
+- Has achieved the title “Outstanding Student with five good merits” Central level - 2023.
 
-- Freshman Academic Scholarship, 2022.
+- Has achieved the title “Student with five good merits” Central level - 2022.
 
-- Excellent Graduation Project of Jiangsu Province, 2022.
-
-- First-prize Enterprise Scholarship, 2021.
-
-- First-prize Academic Scholarship, 2019.
+- Excellent Graduation with GPA: 3.67/4.0, 2023.
