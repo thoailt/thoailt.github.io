@@ -13,4 +13,4 @@ thoailt[at]hcmue.edu.vn
 2019.09 - 2023.06, Information Technology (Software Engineer), Faculty of Information Technology, Ho Chi Minh City University of Education, Vietnam.
 
 #### Research Interests
-Deep Learning, Satellite.
+Deep Learning
