@@ -11,4 +11,4 @@
 - X. Yang, X. Yu, C. Zhang, <strong>S. Li</strong>, and Q. Niu (2021). MineGPS: Battery-Free Localization Base Station for Coal Mine Environment. <strong>IEEE Communications Letters</strong>. [[Paper]](https://doi.org/10.1109/LCOMM.2021.3081593) -->
 
 - V.L Phuc, N.P.H Anh, N.T.K Anh and <strong>L.T Thoai</strong> (2024).<strong>Utilization of electronic documents in handling Vietnam national union of students and student's movement affairs</strong>. _Proceedings The second scientific conference of global Vietnamese young scientifics, Hanoi National University Publishing_
-- <strong>Le Thanh Thoai</strong>, Huynh Anh Du (2022). <strong>Product Information Lookup System Based On Images</strong>. _Proceedings of the Student Scientific Research Conference 2021 - 2022 school year, Ho Chi Minh City University of Education Publishing_.
+- <strong>Le Thanh Thoai</strong>, Huynh Anh Du (2022). Supervisor: Dr. Tran Son Hai. <strong>Product Information Lookup System Based On Images</strong>. _Proceedings of the Student Scientific Research Conference 2021 - 2022 school year, Ho Chi Minh City University of Education Publishing_.
