@@ -6,7 +6,7 @@ A modern academic personal website built with **React**, **Vite**, and **Tailwin
 
 ## ✨ Features
 
-- ⚡ **Lightning Fast** - Built with Vite for optimal performance 
+- ⚡ **Lightning Fast** - Built with Vite for optimal performance
 - 🎨 **Modern UI** - Styled with TailwindCSS v4
 - 📱 **Fully Responsive** - Works seamlessly on all devices
 - 📝 **Markdown Support** - Write content in Markdown

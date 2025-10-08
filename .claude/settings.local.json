@@ -20,7 +20,13 @@
       "Bash(git commit -m \"$(cat <<''EOF''\nAdd .nojekyll to fix GitHub Pages blank page issue\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
       "Bash(git push:*)",
       "Bash(git rm:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(curl:*)",
+      "Bash(git revert:*)",
+      "Bash(git ls-tree:*)",
+      "Bash(timeout 10 curl -s \"https://thoailt.com\")",
+      "Bash(git reset:*)",
+      "Bash(git restore:*)"
     ],
     "deny": [],
     "ask": []
