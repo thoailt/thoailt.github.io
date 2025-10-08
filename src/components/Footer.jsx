@@ -81,7 +81,7 @@ const Footer = ({ copyrightText, githubLink = "https://github.com/thoailt" }) =>
             transition={{ delay: 0.3 }}
           >
             <div dangerouslySetInnerHTML={{ __html: copyrightText || `${currentYear} © Thoai Le` }} />
-            <div className="text-white/70 flex items-center justify-center gap-1">
+            {/* <div className="text-white/70 flex items-center justify-center gap-1">
               Made with <FaHeart className="text-pink-300 animate-pulse h-4 w-4" /> using React + Vite
             </div>
             <div className="text-white/60 text-xs">
@@ -94,7 +94,7 @@ const Footer = ({ copyrightText, githubLink = "https://github.com/thoailt" }) =>
               >
                 Sen Li
               </a>
-            </div>
+            </div> */}
           </motion.div>
         </div>
       </div>

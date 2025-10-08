@@ -90,4 +90,4 @@ MIT License - Feel free to use and modify for your own purposes.
 ## 🙏 Credits
 
 - Original template: [Sen Li](https://github.com/senli1073/senli1073.github.io)
-- Built by: [Thoai Le](https://github.com/thoailt)
+- Built by: [Thoai Le](https://github.com/thoailt) and [Claude Code](https://www.claude.com/product/claude-code)
