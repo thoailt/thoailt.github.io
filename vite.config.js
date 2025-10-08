@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   base: '/', // For custom domain (thoailt.com)
   build: {
-    outDir: 'dist',
+    outDir: 'docs',
     assetsDir: 'assets',
     sourcemap: false,
     rollupOptions: {
