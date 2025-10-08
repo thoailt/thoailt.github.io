@@ -13,7 +13,13 @@
       "Bash(git add:*)",
       "Bash(git commit -m \"$(cat <<''EOF''\nRebuild website with React + Vite\n\n- Modern React 19 + Vite architecture\n- TailwindCSS v4 for styling\n- Framer Motion for smooth animations\n- Custom designed sections (About, Publications, Awards)\n- 3D parallax effects on hero section\n- Optimized loading screen\n- GitHub Actions for auto deployment\n- Custom domain support (thoailt.com)\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
       "Read(//d//**)",
-      "Read(//d/**)"
+      "Read(//d/**)",
+      "Bash(gh run list:*)",
+      "Bash(cat:*)",
+      "Bash(touch:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nAdd .nojekyll to fix GitHub Pages blank page issue\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git push:*)",
+      "Bash(git rm:*)"
     ],
     "deny": [],
     "ask": []
