@@ -1,0 +1,119 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,600;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,500;0,600;0,700;1,300;1,500;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;1,400&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css');
+
+@theme {
+  --font-newsreader: 'Newsreader', serif;
+  --font-mulish: 'Mulish', sans-serif;
+  --font-kanit: 'Kanit', sans-serif;
+}
+
+body {
+  font-family: var(--font-mulish);
+  @apply antialiased text-gray-800;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-newsreader);
+  @apply font-semibold;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-indigo-400 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-indigo-600;
+}
+
+/* Utility Classes */
+.gradient-primary {
+  @apply bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500;
+}
+
+.gradient-secondary {
+  @apply bg-gradient-to-br from-slate-50 to-slate-100;
+}
+
+.section-padding {
+  @apply py-20 lg:py-28;
+}
+
+/* Markdown styles */
+.markdown-content {
+  max-width: none;
+  font-size: 1.125rem;
+  line-height: 1.75;
+}
+
+.markdown-content h1 {
+  @apply text-3xl font-bold mb-4 mt-8;
+}
+
+.markdown-content h2 {
+  @apply text-2xl font-bold mb-3 mt-6;
+}
+
+.markdown-content h3 {
+  @apply text-xl font-bold mb-2 mt-4;
+}
+
+.markdown-content h4 {
+  @apply text-lg font-semibold mb-2 mt-4;
+}
+
+.markdown-content p {
+  @apply mb-4 leading-relaxed;
+}
+
+.markdown-content ul, .markdown-content ol {
+  @apply mb-4 ml-6;
+}
+
+.markdown-content li {
+  @apply mb-2;
+}
+
+.markdown-content a {
+  @apply text-indigo-600 hover:text-indigo-800 underline transition-colors;
+}
+
+.markdown-content code {
+  @apply bg-gray-100 px-2 py-1 rounded text-sm font-mono;
+}
+
+.markdown-content pre {
+  @apply bg-gray-900 text-white p-4 rounded-lg overflow-x-auto mb-4;
+}
+
+.markdown-content blockquote {
+  @apply border-l-4 border-indigo-500 pl-4 italic my-4;
+}
+
+.markdown-content img {
+  @apply rounded-lg shadow-md my-4;
+}
+
+.markdown-content strong {
+  @apply font-bold text-gray-900;
+}
+
+.markdown-content em {
+  @apply italic;
+}
