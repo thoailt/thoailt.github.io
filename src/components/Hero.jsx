@@ -8,6 +8,17 @@ const Hero = ({
   avatar = "/assets/img/avt-transparent.png"
 }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile devices
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Mouse position
   const mouseX = useMotionValue(0);
@@ -63,56 +74,38 @@ const Hero = ({
   return (
     <section
         className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16"
-        onMouseMove={handleMouseMove}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={handleMouseLeave}
+        onMouseMove={isMobile ? undefined : handleMouseMove}
+        onMouseEnter={isMobile ? undefined : () => setIsHovered(true)}
+        onMouseLeave={isMobile ? undefined : handleMouseLeave}
       >
-      {/* Animated Gradient Background */}
+      {/* Static Gradient Background - No blur for better performance */}
       <div className="absolute inset-0 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50">
-        {/* Animated Orbs */}
-        <motion.div
-          className="absolute top-20 left-20 w-72 h-72 bg-indigo-400/30 rounded-full blur-3xl"
-          animate={{
-            x: [0, 50, 0],
-            y: [0, 30, 0],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-        <motion.div
-          className="absolute bottom-20 right-20 w-96 h-96 bg-purple-400/30 rounded-full blur-3xl"
-          animate={{
-            x: [0, -50, 0],
-            y: [0, -30, 0],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
+        {/* Static decorative circles - No animation on blur elements */}
+        <div className="absolute top-20 left-20 w-72 h-72 bg-gradient-to-br from-indigo-400/20 to-indigo-300/10 rounded-full"></div>
+        <div className="absolute bottom-20 right-20 w-96 h-96 bg-gradient-to-br from-purple-400/20 to-purple-300/10 rounded-full"></div>
       </div>
 
-      {/* Floating Particles following mouse - Reduced for performance */}
-      <motion.div
-        className="absolute top-1/4 left-1/4 w-16 h-16 bg-indigo-400/20 rounded-full blur-xl will-change-transform"
-        style={{ x: parallaxX1, y: parallaxY1 }}
-      />
-      <motion.div
-        className="absolute top-1/3 right-1/4 w-20 h-20 bg-purple-400/15 rounded-full blur-2xl will-change-transform"
-        style={{ x: parallaxX2, y: parallaxY2 }}
-      />
-      <motion.div
-        className="absolute bottom-1/3 left-1/3 w-12 h-12 bg-pink-400/20 rounded-full blur-lg will-change-transform"
-        style={{ x: parallaxX3, y: parallaxY3 }}
-      />
-      <motion.div
-        className="absolute bottom-1/4 right-1/3 w-24 h-24 bg-indigo-300/15 rounded-full blur-2xl will-change-transform"
-        style={{ x: parallaxX4, y: parallaxY4 }}
-      />
+      {/* Floating Particles - Only on desktop for better performance */}
+      {!isMobile && (
+        <>
+          <motion.div
+            className="absolute top-1/4 left-1/4 w-16 h-16 bg-gradient-to-br from-indigo-400/30 to-indigo-300/20 rounded-full will-change-transform"
+            style={{ x: parallaxX1, y: parallaxY1 }}
+          />
+          <motion.div
+            className="absolute top-1/3 right-1/4 w-20 h-20 bg-gradient-to-br from-purple-400/25 to-purple-300/15 rounded-full will-change-transform"
+            style={{ x: parallaxX2, y: parallaxY2 }}
+          />
+          <motion.div
+            className="absolute bottom-1/3 left-1/3 w-12 h-12 bg-gradient-to-br from-pink-400/30 to-pink-300/20 rounded-full will-change-transform"
+            style={{ x: parallaxX3, y: parallaxY3 }}
+          />
+          <motion.div
+            className="absolute bottom-1/4 right-1/3 w-24 h-24 bg-gradient-to-br from-indigo-300/25 to-indigo-200/15 rounded-full will-change-transform"
+            style={{ x: parallaxX4, y: parallaxY4 }}
+          />
+        </>
+      )}
 
       {/* Content with Parallax */}
       <motion.div

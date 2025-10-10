@@ -1,7 +1,13 @@
 import { motion } from 'framer-motion';
 import { FaGithub, FaEnvelope, FaGraduationCap, FaMicroscope, FaUniversity } from 'react-icons/fa';
 
+// Check if user prefers reduced motion
+const prefersReducedMotion = () => {
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+};
+
 const AboutSection = ({ content }) => {
+  const shouldAnimate = !prefersReducedMotion();
   const infoCards = [
     {
       icon: <FaUniversity className="w-6 h-6" />,
@@ -45,11 +51,11 @@ const AboutSection = ({ content }) => {
           {infoCards.map((card, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={shouldAnimate ? { opacity: 0, y: 20 } : {}}
+              whileInView={shouldAnimate ? { opacity: 1, y: 0 } : {}}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ y: -8, transition: { duration: 0.2 } }}
+              transition={shouldAnimate ? { duration: 0.3, delay: index * 0.1 } : {}}
+              whileHover={shouldAnimate ? { y: -8, transition: { duration: 0.2 } } : {}}
               className="relative group"
             >
               <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 h-full">

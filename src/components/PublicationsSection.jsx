@@ -2,7 +2,49 @@ import { motion } from 'framer-motion';
 import { FaFileAlt, FaExternalLinkAlt, FaCalendarAlt } from 'react-icons/fa';
 
 const PublicationsSection = () => {
+  // Function to highlight your name in author list
+  const highlightMyName = (authorsText) => {
+    const myNames = ['Thanh-Thoai Le','L.T Thoai', 'Le Thanh Thoai', 'Thoai Le', 'L.T. Thoai'];
+
+    let result = authorsText;
+    myNames.forEach(name => {
+      const regex = new RegExp(`(${name})`, 'gi');
+      result = result.replace(regex, '<strong class="text-indigo-600 font-bold">$1</strong>');
+    });
+
+    return result;
+  };
   const publications = [
+    {
+      year: "2025",
+      title: "Cloud-Aware SAR Fusion for Enhanced Optical Sensing in Space Missions",
+      authors: "Trong-An Bui, Thanh-Thoai Le",
+      venue: "2025 IEEE Radar Conference (RadarConf2025)",
+      location: "Krakow, Poland, 4-9 October 2025",
+      status: "Accepted",
+      doi: "TBA",
+      color: "purple"
+    },
+    {
+      year: "2025",
+      title: "Transformer-Based SAR-Optical Fusion Network for Cloud Removal in Satellite Imagery",
+      authors: "Thanh-Thoai Le, Trong-An Bui, Hai Tran, Tsung-Lang Chang, Pei-Jun Lee",
+      venue: "2025 IEEE International Conference on Consumer Electronics - Taiwan (IEEE ICCE-TW 2025)",
+      location: "Kaohsiung, Taiwan, 16-18 July 2025",
+      status: "Accepted",
+      doi: "TBA",
+      color: "indigo"
+    },
+    {
+      year: "2025",
+      title: "Mitigating Occlusion and Re-Identification Challenges in UAV Object Tracking",
+      authors: "Tai Ho, Trong-An Bui, Pei-Jun Lee, Hsin-Piao Lin, Daniel Selva, Thanh-Thoai Le, Hai Tran",
+      venue: "2025 IEEE International Conference on Consumer Electronics - Taiwan (IEEE ICCE-TW 2025)",
+      location: "Kaohsiung, Taiwan, 16-18 July 2025",
+      status: "Accepted",
+      doi: "TBA",
+      color: "purple"
+    },
     {
       year: "2024",
       title: "Utilization of electronic documents in handling Vietnam national union of students and student's movement affairs",
@@ -82,7 +124,8 @@ const PublicationsSection = () => {
 
                   {/* Authors */}
                   <p className="text-gray-700 mb-2 text-sm">
-                    <strong>Authors:</strong> {pub.authors}
+                    <strong>Authors:</strong>{' '}
+                    <span dangerouslySetInnerHTML={{ __html: highlightMyName(pub.authors) }} />
                   </p>
 
                   {/* Supervisor if exists */}
@@ -92,15 +135,41 @@ const PublicationsSection = () => {
                     </p>
                   )}
 
+                  {/* Status badge if exists */}
+                  {pub.status && (
+                    <span className="inline-block bg-green-100 text-green-700 text-xs font-semibold px-3 py-1 rounded-full mb-2">
+                      {pub.status}
+                    </span>
+                  )}
+
                   {/* Venue */}
                   <p className="text-gray-600 mb-1 text-sm italic">
                     {pub.venue}
                   </p>
 
+                  {/* Location if exists */}
+                  {pub.location && (
+                    <p className="text-gray-500 text-xs mb-1">
+                      📍 {pub.location}
+                    </p>
+                  )}
+
+                  {/* DOI if exists and not TBA */}
+                  {pub.doi && pub.doi !== 'TBA' && (
+                    <p className="text-gray-500 text-xs mb-1">
+                      <strong>DOI:</strong>{' '}
+                      <a href={`https://doi.org/${pub.doi}`} target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:underline">
+                        {pub.doi}
+                      </a>
+                    </p>
+                  )}
+
                   {/* Publisher */}
-                  <p className="text-gray-500 text-sm">
-                    {pub.publisher}
-                  </p>
+                  {pub.publisher && (
+                    <p className="text-gray-500 text-sm">
+                      {pub.publisher}
+                    </p>
+                  )}
                 </div>
               </motion.div>
             </motion.div>
@@ -123,13 +192,13 @@ const PublicationsSection = () => {
           </div>
           <div className="bg-white rounded-2xl p-6 text-center shadow-lg">
             <div className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
-              2
+              {publications.filter(p => p.status === 'Accepted').length}
             </div>
-            <div className="text-gray-600">Years Active</div>
+            <div className="text-gray-600">Accepted Papers (2025)</div>
           </div>
           <div className="bg-white rounded-2xl p-6 text-center shadow-lg">
             <div className="text-4xl font-bold bg-gradient-to-r from-pink-600 to-rose-600 bg-clip-text text-transparent mb-2">
-              2
+              {publications.length}
             </div>
             <div className="text-gray-600">Conference Papers</div>
           </div>
