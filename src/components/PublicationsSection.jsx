@@ -101,7 +101,14 @@ const PublicationsSection = () => {
               }`}
             >
               {/* Timeline Dot */}
-              <div className={`absolute left-8 md:left-1/2 w-4 h-4 rounded-full bg-${pub.color}-600 ring-4 ring-white transform -translate-x-1/2 md:translate-x-0`}></div>
+              <div
+                className="absolute left-8 md:left-1/2 w-4 h-4 rounded-full ring-4 ring-white transform -translate-x-1/2 md:translate-x-0"
+                style={{
+                  backgroundColor: pub.color === 'indigo' ? '#4f46e5' :
+                                   pub.color === 'purple' ? '#9333ea' :
+                                   pub.color === 'pink' ? '#ec4899' : '#4f46e5'
+                }}
+              ></div>
 
               {/* Content Card */}
               <motion.div
@@ -111,8 +118,24 @@ const PublicationsSection = () => {
                 <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100">
                   {/* Year Badge */}
                   <div className="flex items-center gap-2 mb-4">
-                    <FaCalendarAlt className={`text-${pub.color}-600`} />
-                    <span className={`text-sm font-bold text-${pub.color}-600 bg-${pub.color}-50 px-3 py-1 rounded-full`}>
+                    <FaCalendarAlt
+                      style={{
+                        color: pub.color === 'indigo' ? '#4f46e5' :
+                               pub.color === 'purple' ? '#9333ea' :
+                               pub.color === 'pink' ? '#ec4899' : '#4f46e5'
+                      }}
+                    />
+                    <span
+                      className="text-sm font-bold px-3 py-1 rounded-full"
+                      style={{
+                        color: pub.color === 'indigo' ? '#4f46e5' :
+                               pub.color === 'purple' ? '#9333ea' :
+                               pub.color === 'pink' ? '#ec4899' : '#4f46e5',
+                        backgroundColor: pub.color === 'indigo' ? '#eef2ff' :
+                                        pub.color === 'purple' ? '#faf5ff' :
+                                        pub.color === 'pink' ? '#fdf2f8' : '#eef2ff'
+                      }}
+                    >
                       {pub.year}
                     </span>
                   </div>
