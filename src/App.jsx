@@ -7,12 +7,10 @@ import Navigation from './components/Navigation';
 import Hero from './components/Hero';
 import LoadingScreen from './components/LoadingScreen';
 
-// Custom sections (not lazy loaded for better UX)
-import AboutSection from './components/AboutSection';
-import PublicationsSection from './components/PublicationsSection';
-import AwardsSection from './components/AwardsSection';
-
-// Lazy load footer
+// Lazy load sections below the fold for better performance
+const AboutSection = lazy(() => import('./components/AboutSection'));
+const PublicationsSection = lazy(() => import('./components/PublicationsSection'));
+const AwardsSection = lazy(() => import('./components/AwardsSection'));
 const Footer = lazy(() => import('./components/Footer'));
 const ScrollToTop = lazy(() => import('./components/ScrollToTop'));
 
@@ -27,10 +25,10 @@ function App() {
   }, [config]);
 
   useEffect(() => {
-    // Show loading screen for at least 1.5 seconds for smooth animation
+    // Show loading screen for 0.5 seconds for faster loading
     const timer = setTimeout(() => {
       setShowLoading(false);
-    }, 1500);
+    }, 500);
 
     return () => clearTimeout(timer);
   }, []);
@@ -42,7 +40,7 @@ function App() {
       </AnimatePresence>
 
       <div className="min-h-screen bg-white">
-      <Navigation title={config?.['page-top-title'] || "Thoai Le"} />
+      <Navigation title={config?.['nav-title'] || "Thoai Le"} />
 
       <Hero
         name={config?.['page-top-title'] || "Thoai Le"}
@@ -51,10 +49,16 @@ function App() {
         avatar="/assets/img/avt-transparent.png"
       />
 
-      {/* Main Content Sections */}
-      <AboutSection />
-      <PublicationsSection />
-      <AwardsSection />
+      {/* Main Content Sections - Lazy loaded */}
+      <Suspense fallback={
+        <div className="py-20 flex items-center justify-center">
+          <div className="w-8 h-8 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin"></div>
+        </div>
+      }>
+        <AboutSection />
+        <PublicationsSection />
+        <AwardsSection />
+      </Suspense>
 
       {/* Lazy loaded footer */}
       <Suspense fallback={<div className="h-20"></div>}>

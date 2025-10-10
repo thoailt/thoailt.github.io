@@ -4,6 +4,7 @@ import { motion, useMotionValue, useSpring } from 'framer-motion';
 const CursorTrail = () => {
   const [trails, setTrails] = useState([]);
   const [lastTrailTime, setLastTrailTime] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
   const cursorX = useMotionValue(0);
   const cursorY = useMotionValue(0);
@@ -35,18 +36,36 @@ const CursorTrail = () => {
     }
   }, [cursorX, cursorY, lastTrailTime]);
 
+  // Detect mobile/tablet devices
   useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024 || 'ontouchstart' in window);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  useEffect(() => {
+    // Disable cursor trail on mobile/tablet for performance
+    if (isMobile) return;
+
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
     return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, [handleMouseMove]);
+  }, [handleMouseMove, isMobile]);
 
   // Auto remove old trails - slower interval
   useEffect(() => {
+    if (isMobile) return;
+
     const interval = setInterval(() => {
       setTrails(prev => prev.length > 0 ? prev.slice(1) : prev);
     }, 150);
     return () => clearInterval(interval);
-  }, []);
+  }, [isMobile]);
+
+  // Don't render cursor trail on mobile/tablet
+  if (isMobile) return null;
 
   return (
     <>

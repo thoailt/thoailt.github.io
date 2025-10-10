@@ -40,13 +40,18 @@ const Hero = ({
   const parallaxX4 = useSpring(useTransform(mouseX, [-0.5, 0.5], [-60, 60]), slowSpringConfig);
   const parallaxY4 = useSpring(useTransform(mouseY, [-0.5, 0.5], [-60, 60]), slowSpringConfig);
 
-  // Handle mouse move
+  // Throttle mouse move for better performance
   const handleMouseMove = (e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-    mouseX.set(x);
-    mouseY.set(y);
+    // Use requestAnimationFrame to throttle updates
+    if (!isHovered) return;
+
+    requestAnimationFrame(() => {
+      const rect = e.currentTarget.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      mouseX.set(x);
+      mouseY.set(y);
+    });
   };
 
   const handleMouseLeave = () => {
@@ -91,63 +96,22 @@ const Hero = ({
         />
       </div>
 
-      {/* Floating Particles following mouse */}
+      {/* Floating Particles following mouse - Reduced for performance */}
       <motion.div
-        className="absolute top-1/4 left-1/4 w-16 h-16 bg-indigo-400/20 rounded-full blur-xl"
+        className="absolute top-1/4 left-1/4 w-16 h-16 bg-indigo-400/20 rounded-full blur-xl will-change-transform"
         style={{ x: parallaxX1, y: parallaxY1 }}
       />
       <motion.div
-        className="absolute top-1/3 right-1/4 w-20 h-20 bg-purple-400/15 rounded-full blur-2xl"
+        className="absolute top-1/3 right-1/4 w-20 h-20 bg-purple-400/15 rounded-full blur-2xl will-change-transform"
         style={{ x: parallaxX2, y: parallaxY2 }}
       />
       <motion.div
-        className="absolute bottom-1/3 left-1/3 w-12 h-12 bg-pink-400/20 rounded-full blur-lg"
+        className="absolute bottom-1/3 left-1/3 w-12 h-12 bg-pink-400/20 rounded-full blur-lg will-change-transform"
         style={{ x: parallaxX3, y: parallaxY3 }}
       />
       <motion.div
-        className="absolute bottom-1/4 right-1/3 w-24 h-24 bg-indigo-300/15 rounded-full blur-2xl"
+        className="absolute bottom-1/4 right-1/3 w-24 h-24 bg-indigo-300/15 rounded-full blur-2xl will-change-transform"
         style={{ x: parallaxX4, y: parallaxY4 }}
-      />
-
-      {/* More subtle particles */}
-      <motion.div
-        className="absolute top-1/2 left-1/5 w-8 h-8 bg-purple-300/25 rounded-full blur-md"
-        style={{
-          x: useSpring(useTransform(mouseX, [-0.5, 0.5], [-40, 40]), slowSpringConfig),
-          y: useSpring(useTransform(mouseY, [-0.5, 0.5], [-40, 40]), slowSpringConfig)
-        }}
-      />
-      <motion.div
-        className="absolute top-2/3 right-1/5 w-10 h-10 bg-pink-300/20 rounded-full blur-lg"
-        style={{
-          x: useSpring(useTransform(mouseX, [-0.5, 0.5], [-70, 70]), slowSpringConfig),
-          y: useSpring(useTransform(mouseY, [-0.5, 0.5], [-70, 70]), slowSpringConfig)
-        }}
-      />
-      <motion.div
-        className="absolute top-1/5 right-2/5 w-14 h-14 bg-indigo-300/15 rounded-full blur-xl"
-        style={{
-          x: useSpring(useTransform(mouseX, [-0.5, 0.5], [-25, 25]), slowSpringConfig),
-          y: useSpring(useTransform(mouseY, [-0.5, 0.5], [-25, 25]), slowSpringConfig)
-        }}
-      />
-
-      {/* Geometric shapes following mouse */}
-      <motion.div
-        className="absolute top-1/6 left-1/6 w-6 h-6 border-2 border-indigo-400/30 rotate-12"
-        style={{
-          x: useSpring(useTransform(mouseX, [-0.5, 0.5], [-35, 35]), slowSpringConfig),
-          y: useSpring(useTransform(mouseY, [-0.5, 0.5], [-35, 35]), slowSpringConfig),
-          rotate: useSpring(useTransform(mouseX, [-0.5, 0.5], [-20, 20]), slowSpringConfig)
-        }}
-      />
-      <motion.div
-        className="absolute bottom-1/6 right-1/6 w-8 h-8 border-2 border-purple-400/25 rounded-md"
-        style={{
-          x: useSpring(useTransform(mouseX, [-0.5, 0.5], [-45, 45]), slowSpringConfig),
-          y: useSpring(useTransform(mouseY, [-0.5, 0.5], [-45, 45]), slowSpringConfig),
-          rotate: useSpring(useTransform(mouseY, [-0.5, 0.5], [20, -20]), slowSpringConfig)
-        }}
       />
 
       {/* Content with Parallax */}

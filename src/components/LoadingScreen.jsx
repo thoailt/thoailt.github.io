@@ -124,11 +124,11 @@ const LoadingScreen = () => {
             </div>
           </motion.div>
 
-          {/* Floating particles */}
-          {[...Array(6)].map((_, i) => (
+          {/* Floating particles - Reduced to 3 for performance */}
+          {[...Array(3)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-2 h-2 rounded-full bg-gradient-to-r from-indigo-400 to-purple-400 opacity-40"
+              className="absolute w-2 h-2 rounded-full bg-gradient-to-r from-indigo-400 to-purple-400 opacity-40 will-change-transform"
               style={{
                 top: `${Math.random() * 200 - 100}px`,
                 left: `${Math.random() * 200 - 100}px`,
@@ -142,7 +142,7 @@ const LoadingScreen = () => {
                 duration: 3 + Math.random() * 2,
                 repeat: Infinity,
                 ease: "easeInOut",
-                delay: i * 0.3,
+                delay: i * 0.4,
               }}
             />
           ))}
