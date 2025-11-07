@@ -235,6 +235,7 @@ git push origin main
 ## 📚 Documentation
 
 - [Deployment Guide](DEPLOYMENT_GUIDE.md) - Complete deployment instructions
+- [Blog Writing Guide](BLOG_WRITING_GUIDE.md) - How to write blog
 - [Contact Form Setup](CONTACT_FORM_SETUP.md) - Email integration guide
 - [Contributing Guide](CONTRIBUTING.md) - How to customize the site
 
