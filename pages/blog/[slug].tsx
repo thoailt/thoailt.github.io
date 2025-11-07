@@ -24,6 +24,14 @@ interface BlogPostProps {
   };
   content: string;
   slug: string;
+  prevPost?: {
+    slug: string;
+    title: string;
+  } | null;
+  nextPost?: {
+    slug: string;
+    title: string;
+  } | null;
 }
 
 export default function BlogPost({
@@ -31,6 +39,8 @@ export default function BlogPost({
   frontmatter,
   content,
   slug,
+  prevPost,
+  nextPost,
 }: BlogPostProps) {
   // Determine the image for SEO and sharing
   const shareImage = frontmatter.coverImage
@@ -232,6 +242,85 @@ export default function BlogPost({
             />
           </div>
 
+          {/* Previous/Next Post Navigation */}
+          {(prevPost || nextPost) && (
+            <nav className="mt-8 pt-8 border-t border-gray-200">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {/* Previous Post */}
+                <div className="flex">
+                  {prevPost ? (
+                    <a
+                      href={`/blog/${prevPost.slug}`}
+                      className="group flex items-start gap-3 p-4 rounded-lg border border-gray-200 hover:border-primary-500 hover:bg-primary-50 transition-all w-full"
+                    >
+                      <svg
+                        className="w-6 h-6 text-gray-400 group-hover:text-primary-600 flex-shrink-0 mt-0.5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M15 19l-7-7 7-7"
+                        />
+                      </svg>
+                      <div className="flex-1 min-w-0">
+                        <div className="text-sm text-gray-500 mb-1">
+                          Previous
+                        </div>
+                        <div className="font-medium text-gray-900 group-hover:text-primary-600 line-clamp-2">
+                          {prevPost.title}
+                        </div>
+                      </div>
+                    </a>
+                  ) : (
+                    <div className="p-4 rounded-lg border border-gray-100 w-full opacity-50">
+                      <div className="text-sm text-gray-400">
+                        No previous post
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Next Post */}
+                <div className="flex justify-end">
+                  {nextPost ? (
+                    <a
+                      href={`/blog/${nextPost.slug}`}
+                      className="group flex items-start gap-3 p-4 rounded-lg border border-gray-200 hover:border-primary-500 hover:bg-primary-50 transition-all w-full text-right"
+                    >
+                      <div className="flex-1 min-w-0">
+                        <div className="text-sm text-gray-500 mb-1">Next</div>
+                        <div className="font-medium text-gray-900 group-hover:text-primary-600 line-clamp-2">
+                          {nextPost.title}
+                        </div>
+                      </div>
+                      <svg
+                        className="w-6 h-6 text-gray-400 group-hover:text-primary-600 flex-shrink-0 mt-0.5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
+                    </a>
+                  ) : (
+                    <div className="p-4 rounded-lg border border-gray-100 w-full opacity-50">
+                      <div className="text-sm text-gray-400">Latest post</div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </nav>
+          )}
+
           {/* Comments Section */}
           <Comments repo="thoailt/thoailt.github.io" theme="github-light" />
 
@@ -312,12 +401,43 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   // Convert markdown to HTML
   const content = marked(markdownContent);
 
+  // Get all posts for prev/next navigation
+  const files = fs.readdirSync(postsDir).filter((file) => file.endsWith(".md"));
+
+  // Parse all posts and sort by date (newest first)
+  const allPosts = files
+    .map((filename) => {
+      const postPath = path.join(postsDir, filename);
+      const postContent = fs.readFileSync(postPath, "utf8");
+      const { data } = matter(postContent);
+      return {
+        slug: filename.replace(".md", ""),
+        title: data.title,
+        date: data.date,
+      };
+    })
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+  // Find current post index
+  const currentIndex = allPosts.findIndex((post) => post.slug === slug);
+
+  // Get previous and next posts
+  const nextPost = currentIndex > 0 ? allPosts[currentIndex - 1] : null;
+  const prevPost =
+    currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null;
+
   return {
     props: {
       config,
       frontmatter,
       content,
       slug,
+      prevPost: prevPost
+        ? { slug: prevPost.slug, title: prevPost.title }
+        : null,
+      nextPost: nextPost
+        ? { slug: nextPost.slug, title: nextPost.title }
+        : null,
     },
   };
 };
