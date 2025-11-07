@@ -1,0 +1,82 @@
+[
+  {
+    "id": "pub-1",
+    "title": "Cloud-Aware SAR Fusion for Enhanced Optical Sensing in Space Missions",
+    "authors": ["T.-A. Bui", "T.-T. Le"],
+    "venue": "2025 IEEE Radar Conference (RadarConf25)",
+    "location": "Krakow, Poland",
+    "year": 2025,
+    "pages": "502-507",
+    "doi": "10.1109/RadarConf2559087.2025.11205145",
+    "url": "https://ieeexplore.ieee.org/document/11205145",
+    "pdf": "/papers/cloud-aware-sar-fusion.pdf",
+    "abstract": "Cloud contamination significantly impairs the usability of optical satellite imagery, affecting critical applications such as environmental monitoring, disaster response, and land-use analysis. This research presents a Cloud-Attentive Reconstruction Framework that integrates SAR-optical feature fusion with deep learning-based image reconstruction to generate cloud-free optical imagery. The proposed framework employs an attention-driven feature fusion mechanism to align complementary structural information from Synthetic Aperture Radar (SAR) with spectral characteristics from optical data. Furthermore, a cloud-aware model update strategy introduces adaptive loss weighting to prioritize cloud-occluded regions, enhancing reconstruction accuracy. Experimental results demonstrate that the proposed method outperforms existing approaches, achieving a PSNR of 31.01 dB, SSIM of 0.918, and MAE of 0.017, highlighting the framework's effectiveness in producing high-fidelity, spatially and spectrally consistent cloud-free optical images.",
+    "type": "conference",
+    "tags": [
+      "Synthetic Aperture Radar",
+      "Optical Imaging",
+      "Cloud Removal",
+      "Deep Learning",
+      "Remote Sensing"
+    ]
+  },
+  {
+    "id": "pub-2",
+    "title": "Transformer-Based SAR-Optical Fusion Network for Cloud Removal in Satellite Imagery",
+    "authors": ["T.-T. Le", "T.-A. Bui", "H. Tran", "Y.-L. Chang", "P.-J. Lee"],
+    "venue": "2025 IEEE International Conference on Consumer Electronics – Taiwan (ICCE-Taiwan)",
+    "location": "Kaohsiung, Taiwan",
+    "year": 2025,
+    "pages": "19-20",
+    "doi": "10.1109/ICCE-Taiwan66881.2025.11207770",
+    "url": "https://ieeexplore.ieee.org/document/11207770",
+    "pdf": "/papers/transformer-sar-optical-fusion.pdf",
+    "abstract": "Cloud cover significantly limits the usability of optical satellite imagery in various remote sensing applications. This paper presents a Transformer-based fusion framework for cloud removal in optical satellite imagery, leveraging synthetic aperture radar (SAR) data. The proposed approach adopts a Swin Transformer-based self-attention mechanism to capture spatial dependencies and an Attention Difference Mechanism to refine SAR-optical feature integration. By selectively enhancing cloud-occluded regions, the method ensures high-fidelity image reconstruction while preserving both spectral and structural details. Experimental results show that the proposed approach achieves a PSNR of 31.32 dB and SSIM of 0.93 for partially cloud-covered images, and a PSNR of 29.83 dB and SSIM of 0.86 for fully cloud-covered images.",
+    "type": "conference",
+    "tags": [
+      "Transformer",
+      "SAR-Optical Fusion",
+      "Cloud Removal",
+      "Remote Sensing",
+      "Swin Transformer",
+      "Attention Mechanism"
+    ]
+  },
+  {
+    "id": "pub-3",
+    "title": "Mitigating Occlusion and Re-Identification Challenges in UAV Object Tracking",
+    "authors": ["T. Ho", "T.-T. Le", "T.-A. Bui", "Y.-L. Chang", "P.-J. Lee"],
+    "venue": "2025 IEEE International Conference on Consumer Electronics - Taiwan (ICCE-Taiwan)",
+    "location": "Kaohsiung, Taiwan",
+    "year": 2025,
+    "pages": "21-22",
+    "doi": "10.1109/ICCE-Taiwan66881.2025.11207837",
+    "url": "https://ieeexplore.ieee.org/document/11207837",
+    "pdf": "/papers/uav-object-tracking.pdf",
+    "abstract": "Object tracking in UAV imagery is challenging due to occlusions, scale variations, and frequent object disappearance. YOLO-based detection lacks temporal consistency, resulting in ID switches and tracking failures when objects reappear after occlusion. To address this, this study proposes an enhanced tracking framework integrating YOLO for object detection, DeepSORT for identity assignment, and an occlusion handling module leveraging motion prediction and feature embeddings for re-identification. Evaluations on the UAVDT dataset demonstrate that the proposed approach significantly reduces ID switches and improves tracking stability compared to standalone YOLO tracking, making it a robust solution for aerial surveillance and monitoring.",
+    "type": "conference",
+    "tags": ["UAV", "Object Tracking", "YOLO", "DeepSORT", "Re-identification"]
+  },
+  {
+    "id": "pub-4",
+    "title": "Utilization of Electronic Documents in Handling Vietnam National Union of Students and Student's Movement Affairs",
+    "authors": ["V. L. Phuc", "N. T. K. Anh", "N. P. H. Anh", "L. T. Thoai"],
+    "venue": "The Second Scientific Conference of Global Vietnamese Young Scientists",
+    "location": "Vietnam",
+    "year": 2024,
+    "pages": "",
+    "isbn": "978-604-43-1089-5",
+    "doi": "",
+    "url": "",
+    "pdf": "/papers/electronic-documents-vus.pdf",
+    "abstract": "Digital transformation is an inevitable trend in the movement and development of modern society under the influence of scientific and technological achievements. In that trend, the affairs of the Vietnam National Union of Students (VUS) and the students’ movement have gradually promoted the implementation of digital transformation in various activities. Based on a thorough awareness of the role of digital transformation in the development of the Ho Chi Minh Communist Youth Union (HCYU) and VUS, this paper approaches 'electronic documents' as a research object and examines their role in enhancing the effectiveness of VUS affairs. Using analytical, synthesis, and policy analysis methods, the study proposes a theoretical framework for the concept of electronic documents, defines their features within VUS affairs, and analyzes their practical implementation since the 2014–2015 academic year. The paper concludes with recommendations to improve the systematic and synchronized application of electronic documents in managing VUS affairs.",
+    "type": "conference",
+    "tags": [
+      "Digital Transformation",
+      "Electronic Documents",
+      "Education Management",
+      "Youth Union Affairs",
+      "Vietnam National Union of Students"
+    ]
+  }
+]

@@ -1,0 +1,82 @@
+{
+    "name": "Thoai Le",
+    "title": "Master's Student & Teaching Assistant",
+    "email": "thoailt@hcmue.edu.vn",
+    "phone": "Updating ...",
+    "location": "Ho Chi Minh City, Vietnam",
+    "bio": "My name is <b>Le Thanh Thoai</b>. I'm a teaching assistant and master's student at the <b>Faculty of Information Technology, Ho Chi Minh City University of Education, Vietnam</b>.",
+    "avatar": "/images/avatar.jpg",
+
+  "social": {
+    "github": "https://github.com/thoailt",
+    "linkedin": "https://linkedin.com/in/thoailt",
+    "scholar": "https://scholar.google.com/citations?user=QR0P064AAAAJ"
+  },
+
+  "seo": {
+    "title": "Thanh Thoai - Le",
+    "description": "Portfolio website showcasing my publications, and blog posts in software engineering and research.",
+    "keywords": "software engineer, researcher, machine learning, web development, portfolio",
+    "author": "Thoai Le",
+    "siteUrl": "https://thoailt.com",
+    "image": "/images/og-image.jpg"
+  },
+
+  "navigation": [
+    { "name": "About", "href": "/about" },
+    { "name": "Publications", "href": "/publications" },
+    { "name": "Blog", "href": "/blog" },
+    { "name": "Contact", "href": "/contact" }
+  ],
+
+  "education": [
+    {
+      "degree": "M.S. in Computer Science",
+      "institution": "Ho Chi Minh City University of Education, Vietnam",
+      "location": "Ho Chi Minh City, Vietnam",
+      "year": "2023 - present",
+      "description": "Cloud removal in satellite imagery",
+      "gpa": "..."
+    },
+    {
+      "degree": "B.S. in Information Technology",
+      "institution": "Ho Chi Minh City University of Education, Vietnam",
+      "location": "Ho Chi Minh City, Vietnam",
+      "year": "2019 - 2023",
+      "description": "Graduated with honors",
+      "gpa": "3.67/4.0"
+    }
+  ],
+
+  "awards": [
+    {
+      "title": "Outstanding Student with five good merits",
+      "organization": "Viet Nam National Union of Student",
+      "year": "2023",
+      "description": "Central and City level"
+    },
+    {
+      "title": "Second Valedictorian of Graduation Class",
+      "organization": "Faculty of Information Technology - HCMUE",
+      "year": "2023",
+      "description": ""
+    },
+    {
+      "title": "Student with five good merits",
+      "organization": "Viet Nam National Union of Student",
+      "year": "2022",
+      "description": "Central and City level"
+    },
+    {
+      "title": "Academic Incentive Scholarship of HCMUE",
+      "organization": "Ho Chi Minh City University of Education",
+      "year": "2019 - 2023",
+      "description": "6 Terms"
+    }
+  ],
+
+  "theme": {
+    "primaryColor": "#0ea5e9",
+    "accentColor": "#0369a1"
+  }
+}
