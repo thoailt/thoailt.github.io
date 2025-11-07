@@ -134,7 +134,7 @@ excerpt: "Brief description..."
 Content here...
 ```
 
-For formatting tips, image sizing, code blocks and metadata examples see: [`BLOG_WRITING_GUIDE.md`](BLOG_WRITING_GUIDE.md)
+For formatting tips, image sizing, code blocks and metadata examples see: [BLOG_WRITING_GUIDE.md](BLOG_WRITING_GUIDE.md)
 
 ### 5. Add Images
 
