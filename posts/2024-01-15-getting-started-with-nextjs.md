@@ -1,7 +1,7 @@
 ---
 title: "Getting Started with Next.js: A Comprehensive Guide"
 date: "2024-01-15"
-author: "Your Name"
+author: "admin"
 tags: ["Next.js", "React", "Web Development", "Tutorial"]
 excerpt: "Learn how to build modern web applications with Next.js, the React framework for production."
 ---

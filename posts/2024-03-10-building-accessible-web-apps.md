@@ -1,7 +1,7 @@
 ---
 title: "Building Accessible Web Applications: A Developer's Guide"
 date: "2024-03-10"
-author: "Your Name"
+author: "admin"
 tags: ["Accessibility", "Web Development", "A11y", "Best Practices"]
 excerpt: "Learn how to build web applications that are accessible to all users, including those with disabilities."
 ---

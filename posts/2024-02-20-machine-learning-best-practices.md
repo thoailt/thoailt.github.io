@@ -1,7 +1,7 @@
 ---
 title: "Machine Learning Best Practices for Production Systems"
 date: "2024-02-20"
-author: "Your Name"
+author: "thoailt"
 tags: ["Machine Learning", "AI", "Best Practices", "Production"]
 excerpt: "Essential best practices for deploying and maintaining machine learning models in production environments."
 ---
