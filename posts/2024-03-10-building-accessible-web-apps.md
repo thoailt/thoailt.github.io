@@ -4,6 +4,7 @@ date: "2024-03-10"
 author: "admin"
 tags: ["Accessibility", "Web Development", "A11y", "Best Practices"]
 excerpt: "Learn how to build web applications that are accessible to all users, including those with disabilities."
+coverImage: "https://plus.unsplash.com/premium_photo-1685086785077-ff65bf749544?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1332"
 ---
 
 # Building Accessible Web Applications: A Developer's Guide
@@ -62,6 +63,7 @@ Ensure all interactive elements are keyboard accessible:
 ```
 
 Test your site using only a keyboard:
+
 - `Tab` to navigate forward
 - `Shift + Tab` to navigate backward
 - `Enter` or `Space` to activate elements
@@ -123,12 +125,7 @@ Make forms accessible with proper labels and error handling:
     Email Address
     <span aria-label="required">*</span>
   </label>
-  <input
-    id="email"
-    type="email"
-    required
-    aria-describedby="email-error"
-  />
+  <input id="email" type="email" required aria-describedby="email-error" />
   <span id="email-error" role="alert">
     {emailError}
   </span>
@@ -151,12 +148,7 @@ function Modal({ isOpen, onClose, children }) {
   }, [isOpen]);
 
   return (
-    <div
-      ref={modalRef}
-      role="dialog"
-      aria-modal="true"
-      tabIndex={-1}
-    >
+    <div ref={modalRef} role="dialog" aria-modal="true" tabIndex={-1}>
       {children}
     </div>
   );

@@ -4,6 +4,7 @@ date: "2024-02-20"
 author: "thoailt"
 tags: ["Machine Learning", "AI", "Best Practices", "Production"]
 excerpt: "Essential best practices for deploying and maintaining machine learning models in production environments."
+coverImage: "https://images.unsplash.com/photo-1591453089816-0fbb971b454c?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170"
 ---
 
 # Machine Learning Best Practices for Production Systems

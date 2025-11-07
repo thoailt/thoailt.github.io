@@ -15,11 +15,13 @@ date: "2025-11-07"
 author: "Your Name"
 tags: ["tag1", "tag2"]
 excerpt: "A short summary shown on the blog index"
+coverImage: "/images/blog/cover-image.jpg" # Optional: cover image
 ---
 ```
 
 - `title` and `date` are required.
 - `excerpt` will be used as the summary text on list pages.
+- `coverImage` (optional): Path to cover image displayed at the top of the post. Recommended size: 1200x600px or 16:9 aspect ratio.
 
 ## 2. Headings and paragraphs
 
@@ -140,6 +142,7 @@ date: "2025-11-07"
 author: "Your Name"
 tags: ["python", "beginner"]
 excerpt: "A short intro to Python."
+coverImage: "/images/blog/python-cover.jpg"
 ---
 
 # Quick Python Example
@@ -149,25 +152,34 @@ Here is a small Python snippet:
 ```python
 print("Hello from Python")
 ```
-````
 
 And a centered image:
 
 <div align="center">
-  <img src="public/images/logo.svg" alt="LeThanhThoai logo" width="200" />
+  <img src="/images/blog/diagram.png" alt="Diagram" width="200" />
 </div>
-```
+````
 
-## 10. Checklist before publishing
+## 10. Social Sharing & Comments
+
+The blog automatically includes:
+
+- **Share buttons**: Facebook, Twitter, LinkedIn, and copy link
+- **Comments**: Powered by [utterances](https://utteranc.es/), a GitHub issue-based comment system
+
+No additional setup is needed. Comments will appear once users authorize with their GitHub account.
+
+## 11. Checklist before publishing
 
 - [ ] Frontmatter filled (title, date, excerpt, tags)
+- [ ] Cover image added (optional) and placed in `public/images/blog/`
 - [ ] Code fences include language identifiers
 - [ ] Images placed in `public/images/blog/` and paths are correct
 - [ ] Alt text for each image
 - [ ] Spell-check and proofread
 - [ ] Run `npm run export` locally to verify generation (optional)
 
-## 11. Publishing
+## 12. Publishing
 
 1. Add the markdown file to `posts/` (filename should be `YYYY-MM-DD-slug.md`)
 2. `git add posts/YYYY-MM-DD-slug.md`

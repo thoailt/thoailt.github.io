@@ -5,6 +5,8 @@ import path from "path";
 import matter from "gray-matter";
 import { marked } from "marked";
 import Layout from "@/components/Layout";
+import ShareButtons from "@/components/ShareButtons";
+import Comments from "@/components/Comments";
 
 /**
  * Blog post detail page
@@ -18,6 +20,7 @@ interface BlogPostProps {
     author?: string;
     tags?: string[];
     excerpt?: string;
+    coverImage?: string;
   };
   content: string;
   slug: string;
@@ -29,6 +32,15 @@ export default function BlogPost({
   content,
   slug,
 }: BlogPostProps) {
+  // Determine the image for SEO and sharing
+  const shareImage = frontmatter.coverImage
+    ? frontmatter.coverImage
+    : config.seo?.image || "/images/logo.svg";
+
+  const fullUrl = `${
+    config.seo?.siteUrl || "https://thoailt.com"
+  }/blog/${slug}`;
+
   React.useEffect(() => {
     // Load Prism.js for syntax highlighting
     const loadPrism = () => {
@@ -138,6 +150,8 @@ export default function BlogPost({
       config={config}
       title={`${frontmatter.title} | ${config.name}`}
       description={frontmatter.excerpt || frontmatter.title}
+      image={shareImage}
+      url={fullUrl}
     >
       <article className="section-padding bg-white">
         <div className="container-custom max-w-4xl">
@@ -190,16 +204,41 @@ export default function BlogPost({
             )}
           </header>
 
+          {/* Cover Image */}
+          {frontmatter.coverImage && (
+            <div className="mb-8 -mx-4 sm:mx-0">
+              <img
+                src={frontmatter.coverImage}
+                alt={frontmatter.title}
+                className="w-full h-auto rounded-lg shadow-lg object-cover max-h-96"
+              />
+            </div>
+          )}
+
           {/* Post content */}
           <div
             className="prose prose-lg max-w-none"
             dangerouslySetInnerHTML={{ __html: content }}
           />
 
+          {/* Share Buttons */}
+          <div className="mt-8 pt-6 border-t border-gray-100">
+            <ShareButtons
+              url={fullUrl}
+              title={frontmatter.title}
+              image={`${
+                config.seo?.siteUrl || "https://thoailt.com"
+              }${shareImage}`}
+            />
+          </div>
+
+          {/* Comments Section */}
+          <Comments repo="thoailt/thoailt.github.io" theme="github-light" />
+
           {/* Post footer */}
           <footer className="mt-12 pt-8 border-t border-gray-200">
             <a
-              href="/#blog"
+              href="/blog"
               className="inline-flex items-center text-primary-600 hover:text-primary-700 transition-colors"
             >
               <svg
