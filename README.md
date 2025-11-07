@@ -134,6 +134,8 @@ excerpt: "Brief description..."
 Content here...
 ```
 
+For formatting tips, image sizing, code blocks and metadata examples see: [`BLOG_WRITING_GUIDE.md`](BLOG_WRITING_GUIDE.md)
+
 ### 5. Add Images
 
 - **Avatar**: `public/images/avatar.jpg` (400x400px)
@@ -170,6 +172,7 @@ The contact form needs a backend service to work. Choose one:
 **📖 See setup guide:** [CONTACT_FORM_SETUP.md](CONTACT_FORM_SETUP.md)
 
 Recommended options:
+
 - **FormSpree** (50 submissions/month free)
 - **Web3Forms** (unlimited, free)
 - **EmailJS** (200 emails/month free)
@@ -185,13 +188,13 @@ Recommended options:
 
 ## 📝 Key Files
 
-| File | Purpose |
-|------|---------|
-| `public/CNAME` | Custom domain configuration |
-| `next.config.js` | Next.js build settings |
-| `data/siteConfig.json` | Site configuration, SEO, personal info |
-| `.github/workflows/deploy.yml` | Auto-deployment workflow |
-| `.gitignore` | Git ignore rules |
+| File                           | Purpose                                |
+| ------------------------------ | -------------------------------------- |
+| `public/CNAME`                 | Custom domain configuration            |
+| `next.config.js`               | Next.js build settings                 |
+| `data/siteConfig.json`         | Site configuration, SEO, personal info |
+| `.github/workflows/deploy.yml` | Auto-deployment workflow               |
+| `.gitignore`                   | Git ignore rules                       |
 
 ## 🔄 Update Workflow
 
@@ -240,15 +243,18 @@ git push origin main
 ### Common Issues
 
 **Site not deploying?**
+
 - Check GitHub Actions tab for errors
 - Ensure Settings → Pages → Source is "GitHub Actions"
 
 **Custom domain not working?**
+
 - Verify `public/CNAME` contains `thoailt.com`
 - Check DNS settings at domain provider
 - Wait 24-48h for DNS propagation
 
 **Images not loading?**
+
 - Ensure files are in `public/` directory
 - Use absolute paths: `/images/file.jpg`
 
@@ -259,6 +265,7 @@ MIT License - Feel free to use this template for your own portfolio.
 ## 🙏 Credits
 
 Built with:
+
 - [Next.js](https://nextjs.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
 - [TypeScript](https://www.typescriptlang.org/)
@@ -268,4 +275,4 @@ Built with:
 
 **Live at:** [https://thoailt.com](https://thoailt.com)
 
-**Last Updated:** November 2024
+**Last Updated:** November 2025
