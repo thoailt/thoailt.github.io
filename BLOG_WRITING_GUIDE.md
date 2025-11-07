@@ -175,7 +175,3 @@ And a centered image:
 4. `git push`
 
 GitHub Actions will run and deploy the site.
-
----
-
-If you want, I can also add a sample post template file under `posts/_template.md` so you can copy it next time. Would you like me to add that?
