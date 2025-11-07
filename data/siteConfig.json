@@ -1,11 +1,11 @@
 {
-    "name": "Thoai Le",
-    "title": "Master's Student & Teaching Assistant",
-    "email": "thoailt@hcmue.edu.vn",
-    "phone": "Updating ...",
-    "location": "Ho Chi Minh City, Vietnam",
-    "bio": "My name is <b>Le Thanh Thoai</b>. I'm a teaching assistant and master's student at the <b>Faculty of Information Technology, Ho Chi Minh City University of Education, Vietnam</b>.",
-    "avatar": "/images/avatar.jpg",
+  "name": "Thoai Le",
+  "title": "Master's Student & Teaching Assistant",
+  "email": "thoailt@hcmue.edu.vn",
+  "phone": "Updating ...",
+  "location": "Ho Chi Minh City, Vietnam",
+  "bio": "My name is <b>Le Thanh Thoai</b>. I'm a teaching assistant and master's student at the <b>Faculty of Information Technology, Ho Chi Minh City University of Education, Vietnam</b>.",
+  "avatar": "/images/avatar.jpg",
 
   "social": {
     "github": "https://github.com/thoailt",
@@ -15,7 +15,7 @@
 
   "seo": {
     "title": "Thanh Thoai - Le",
-    "description": "Portfolio website showcasing my publications, and blog posts in software engineering and research.",
+    "description": "Portfolio website showcasing my publications and blog posts in software engineering and research.",
     "keywords": "software engineer, researcher, machine learning, web development, portfolio",
     "author": "Thoai Le",
     "siteUrl": "https://thoailt.com",
