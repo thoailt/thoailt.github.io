@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 /**
  * Header component with responsive navigation and smooth scroll
@@ -17,6 +18,12 @@ export default function Header({ config }: HeaderProps) {
   const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Logo configuration - set to true to use logo image instead of text
+  const useLogo = true; // Change to true when you want to use logo
+  const logoPath = "/images/logo.svg"; // Update this path to your logo file
+  const logoWidth = 45; // Adjust logo width
+  const logoHeight = 45; // Adjust logo height
 
   // Check if a navigation item is active
   const isActive = (href: string) => {
@@ -78,12 +85,31 @@ export default function Header({ config }: HeaderProps) {
         aria-label="Main navigation"
       >
         <div className="flex items-center justify-between">
-          {/* Logo */}
+          {/* Logo - Toggle between image and text */}
           <Link
             href="/"
-            className="text-2xl font-bold text-gray-900 hover:text-primary-600 transition-colors"
+            className="flex items-center hover:opacity-80 transition-opacity"
           >
-            {config.name}
+            {useLogo ? (
+              // Option 1: Use logo image
+              // To enable:
+              // 1. Set useLogo = true above
+              // 2. Add your logo image to public/images/logo.png
+              // 3. Adjust logoWidth and logoHeight if needed
+              <Image
+                src={logoPath}
+                alt={config.name}
+                width={logoWidth}
+                height={logoHeight}
+                priority
+                className="object-contain"
+              />
+            ) : (
+              // Option 2: Use text logo (current default)
+              <span className="text-2xl font-bold text-gray-900 hover:text-primary-600 transition-colors">
+                {config.name}
+              </span>
+            )}
           </Link>
 
           {/* Desktop Navigation */}
