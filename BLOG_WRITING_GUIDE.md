@@ -154,7 +154,7 @@ print("Hello from Python")
 And a centered image:
 
 <div align="center">
-  <img src="/images/blog/python-logo.png" alt="Python logo" width="200" />
+  <img src="public/images/logo.svg" alt="LeThanhThoai logo" width="200" />
 </div>
 ```
 
