@@ -62,7 +62,7 @@ export default function SEO({ title, description, image, url, config }: SEOProps
       <meta name="twitter:image" content={fullImageUrl} />
 
       {/* Favicon */}
-      <link rel="icon" type="image/svg+xml" href="/images/hcmue-logo.svg" />
+      <link rel="icon" type="image/svg+xml" href="/images/logo-fav.svg" />
       <link rel="alternate icon" href="/favicon.ico" />
 
       {/* Canonical URL */}
