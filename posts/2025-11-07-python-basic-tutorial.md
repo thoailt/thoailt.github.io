@@ -1,6 +1,6 @@
 ---
 title: "Python Cơ Bản: Hướng Dẫn Từ Đầu Cho Người Mới Bắt Đầu"
-date: "2024-11-07"
+date: "2025-11-07"
 author: "thoailt"
 tags: ["Python", "Programming", "Tutorial", "Beginner"]
 excerpt: "Học Python từ con số 0 với hướng dẫn chi tiết, ví dụ thực tế và code mẫu bạn có thể chạy ngay lập tức."
