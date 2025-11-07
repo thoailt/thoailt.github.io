@@ -7,7 +7,7 @@ excerpt: "Học Python từ con số 0 với hướng dẫn chi tiết, ví dụ
 coverImage: "/images/blog/python-blog.png"
 ---
 
-# Python Cơ Bản: Hướng Dẫn Từ Đầu Cho Người Mới Bắt Đầu
+# Python Cơ Bản: Hướng Dẫn Cho Người Mới Bắt Đầu
 
 Python là một trong những ngôn ngữ lập trình phổ biến nhất hiện nay, được sử dụng rộng rãi trong phát triển web, data science, machine learning, automation và nhiều lĩnh vực khác. Trong bài viết này, chúng ta sẽ cùng khám phá những kiến thức cơ bản về Python.
 
@@ -554,4 +554,4 @@ Chúc bạn học Python vui vẻ! Nếu có câu hỏi, đừng ngại comment 
 
 ---
 
-_Bài viết được viết bởi Thoai Le. Nếu thấy hữu ích, hãy chia sẻ để nhiều người cùng học nhé!_
+_Bài viết được viết bởi thoailt. Nếu thấy hữu ích, hãy chia sẻ để nhiều người cùng học nhé!_

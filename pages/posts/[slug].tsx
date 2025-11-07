@@ -7,6 +7,7 @@ import { marked } from "marked";
 import Layout from "@/components/Layout";
 import ShareButtons from "@/components/ShareButtons";
 import Comments from "@/components/Comments";
+import TableOfContents from "@/components/TableOfContents";
 
 /**
  * Post detail page
@@ -164,7 +165,7 @@ export default function Post({
       url={fullUrl}
     >
       <article className="section-padding bg-white">
-        <div className="container-custom max-w-4xl">
+        <div className="container-custom max-w-7xl">
           {/* Back link */}
           <a
             href="/posts"
@@ -186,166 +187,181 @@ export default function Post({
             Back to Posts
           </a>
 
-          {/* Post header */}
-          <header className="mb-8">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              {frontmatter.title}
-            </h1>
-            <div className="flex flex-wrap items-center gap-4 text-gray-600">
-              <time dateTime={frontmatter.date}>{frontmatter.date}</time>
-              {frontmatter.author && (
-                <>
-                  <span>•</span>
-                  <span>By {frontmatter.author}</span>
-                </>
+          {/* Main content with sidebar layout */}
+          <div className="lg:grid lg:grid-cols-[280px_1fr] lg:gap-8 lg:items-start">
+            {/* Table of Contents - Desktop sidebar (left), Mobile top */}
+            <aside className="lg:block lg:sticky lg:top-24">
+              <TableOfContents content={content} />
+            </aside>
+
+            {/* Post content */}
+            <div className="min-w-0">
+              {/* Post header */}
+              <header className="mb-8">
+                <h1 className="text-4xl md:text-5xl font-bold text-gradient mb-4 pb-2">
+                  {frontmatter.title}
+                </h1>
+                <div className="flex flex-wrap items-center gap-4 text-gray-600">
+                  <time dateTime={frontmatter.date}>{frontmatter.date}</time>
+                  {frontmatter.author && (
+                    <>
+                      <span>•</span>
+                      <span>By {frontmatter.author}</span>
+                    </>
+                  )}
+                </div>
+                {frontmatter.tags && frontmatter.tags.length > 0 && (
+                  <div className="flex flex-wrap gap-2 mt-4">
+                    {frontmatter.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-3 py-1 bg-primary-50 text-primary-700 text-sm rounded-full"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </header>
+
+              {/* Cover Image */}
+              {frontmatter.coverImage && (
+                <div className="mb-8 -mx-4 sm:mx-0">
+                  <img
+                    src={frontmatter.coverImage}
+                    alt={frontmatter.title}
+                    className="w-full h-auto rounded-lg shadow-lg object-cover max-h-96"
+                  />
+                </div>
               )}
-            </div>
-            {frontmatter.tags && frontmatter.tags.length > 0 && (
-              <div className="flex flex-wrap gap-2 mt-4">
-                {frontmatter.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-3 py-1 bg-primary-50 text-primary-700 text-sm rounded-full"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            )}
-          </header>
 
-          {/* Cover Image */}
-          {frontmatter.coverImage && (
-            <div className="mb-8 -mx-4 sm:mx-0">
-              <img
-                src={frontmatter.coverImage}
-                alt={frontmatter.title}
-                className="w-full h-auto rounded-lg shadow-lg object-cover max-h-96"
+              {/* Post content */}
+              <div
+                className="prose prose-lg max-w-none"
+                dangerouslySetInnerHTML={{ __html: content }}
               />
-            </div>
-          )}
 
-          {/* Post content */}
-          <div
-            className="prose prose-lg max-w-none"
-            dangerouslySetInnerHTML={{ __html: content }}
-          />
-
-          {/* Share Buttons */}
-          <div className="mt-8 pt-6 border-t border-gray-100">
-            <ShareButtons
-              url={fullUrl}
-              title={frontmatter.title}
-              image={`${
-                config.seo?.siteUrl || "https://thoailt.com"
-              }${shareImage}`}
-            />
-          </div>
-
-          {/* Previous/Next Post Navigation */}
-          {(prevPost || nextPost) && (
-            <nav className="mt-8 pt-8 border-t border-gray-200">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {/* Previous Post */}
-                <div className="flex">
-                  {prevPost ? (
-                    <a
-                      href={`/posts/${prevPost.slug}`}
-                      className="group flex items-start gap-3 p-4 rounded-lg border border-gray-200 hover:border-primary-500 hover:bg-primary-50 transition-all w-full"
-                    >
-                      <svg
-                        className="w-6 h-6 text-gray-400 group-hover:text-primary-600 flex-shrink-0 mt-0.5"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M15 19l-7-7 7-7"
-                        />
-                      </svg>
-                      <div className="flex-1 min-w-0">
-                        <div className="text-sm text-gray-500 mb-1">
-                          Previous
-                        </div>
-                        <div className="font-medium text-gray-900 group-hover:text-primary-600 line-clamp-2">
-                          {prevPost.title}
-                        </div>
-                      </div>
-                    </a>
-                  ) : (
-                    <div className="p-4 rounded-lg border border-gray-100 w-full opacity-50">
-                      <div className="text-sm text-gray-400">
-                        No previous post
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                {/* Next Post */}
-                <div className="flex justify-end">
-                  {nextPost ? (
-                    <a
-                      href={`/posts/${nextPost.slug}`}
-                      className="group flex items-start gap-3 p-4 rounded-lg border border-gray-200 hover:border-primary-500 hover:bg-primary-50 transition-all w-full text-right"
-                    >
-                      <div className="flex-1 min-w-0">
-                        <div className="text-sm text-gray-500 mb-1">Next</div>
-                        <div className="font-medium text-gray-900 group-hover:text-primary-600 line-clamp-2">
-                          {nextPost.title}
-                        </div>
-                      </div>
-                      <svg
-                        className="w-6 h-6 text-gray-400 group-hover:text-primary-600 flex-shrink-0 mt-0.5"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M9 5l7 7-7 7"
-                        />
-                      </svg>
-                    </a>
-                  ) : (
-                    <div className="p-4 rounded-lg border border-gray-100 w-full opacity-50">
-                      <div className="text-sm text-gray-400">Latest post</div>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </nav>
-          )}
-
-          {/* Comments Section */}
-          <Comments repo="thoailt/thoailt.github.io" theme="github-light" />
-
-          {/* Post footer */}
-          <footer className="mt-12 pt-8 border-t border-gray-200">
-            <a
-              href="/posts"
-              className="inline-flex items-center text-primary-600 hover:text-primary-700 transition-colors"
-            >
-              <svg
-                className="w-5 h-5 mr-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M10 19l-7-7m0 0l7-7m-7 7h18"
+              {/* Share Buttons */}
+              <div className="mt-8 pt-6 border-t border-gray-100">
+                <ShareButtons
+                  url={fullUrl}
+                  title={frontmatter.title}
+                  image={`${
+                    config.seo?.siteUrl || "https://thoailt.com"
+                  }${shareImage}`}
                 />
-              </svg>
-              Back to all posts
-            </a>
-          </footer>
+              </div>
+
+              {/* Previous/Next Post Navigation */}
+              {(prevPost || nextPost) && (
+                <nav className="mt-8 pt-8 border-t border-gray-200">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {/* Previous Post */}
+                    <div className="flex">
+                      {prevPost ? (
+                        <a
+                          href={`/posts/${prevPost.slug}`}
+                          className="group flex items-start gap-3 p-4 rounded-lg border border-gray-200 hover:border-primary-500 hover:bg-primary-50 transition-all w-full"
+                        >
+                          <svg
+                            className="w-6 h-6 text-gray-400 group-hover:text-primary-600 flex-shrink-0 mt-0.5"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M15 19l-7-7 7-7"
+                            />
+                          </svg>
+                          <div className="flex-1 min-w-0">
+                            <div className="text-sm text-gray-500 mb-1">
+                              Previous
+                            </div>
+                            <div className="font-medium text-gray-900 group-hover:text-primary-600 line-clamp-2">
+                              {prevPost.title}
+                            </div>
+                          </div>
+                        </a>
+                      ) : (
+                        <div className="p-4 rounded-lg border border-gray-100 w-full opacity-50">
+                          <div className="text-sm text-gray-400">
+                            No previous post
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Next Post */}
+                    <div className="flex justify-end">
+                      {nextPost ? (
+                        <a
+                          href={`/posts/${nextPost.slug}`}
+                          className="group flex items-start gap-3 p-4 rounded-lg border border-gray-200 hover:border-primary-500 hover:bg-primary-50 transition-all w-full text-right"
+                        >
+                          <div className="flex-1 min-w-0">
+                            <div className="text-sm text-gray-500 mb-1">
+                              Next
+                            </div>
+                            <div className="font-medium text-gray-900 group-hover:text-primary-600 line-clamp-2">
+                              {nextPost.title}
+                            </div>
+                          </div>
+                          <svg
+                            className="w-6 h-6 text-gray-400 group-hover:text-primary-600 flex-shrink-0 mt-0.5"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M9 5l7 7-7 7"
+                            />
+                          </svg>
+                        </a>
+                      ) : (
+                        <div className="p-4 rounded-lg border border-gray-100 w-full opacity-50">
+                          <div className="text-sm text-gray-400">
+                            Latest post
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </nav>
+              )}
+
+              {/* Comments Section */}
+              <Comments repo="thoailt/thoailt.github.io" theme="github-light" />
+
+              {/* Post footer */}
+              <footer className="mt-12 pt-8 border-t border-gray-200">
+                <a
+                  href="/posts"
+                  className="inline-flex items-center text-primary-600 hover:text-primary-700 transition-colors"
+                >
+                  <svg
+                    className="w-5 h-5 mr-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                    />
+                  </svg>
+                  Back to all posts
+                </a>
+              </footer>
+            </div>
+          </div>
         </div>
       </article>
     </Layout>
