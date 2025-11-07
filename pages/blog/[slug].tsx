@@ -143,7 +143,7 @@ export default function BlogPost({
         <div className="container-custom max-w-4xl">
           {/* Back link */}
           <a
-            href="/#blog"
+            href="/blog"
             className="inline-flex items-center text-primary-600 hover:text-primary-700 mb-8 transition-colors"
           >
             <svg
