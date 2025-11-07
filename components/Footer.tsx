@@ -21,10 +21,10 @@ export default function Footer({ config }: FooterProps) {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    { name: 'GitHub', icon: '⚡', url: config.social.github },
-    { name: 'LinkedIn', icon: '💼', url: config.social.linkedin },
+    { name: 'GitHub', icon: '🔵', url: config.social.github },
+    { name: 'LinkedIn', icon: '🔵', url: config.social.linkedin },
     { name: 'Twitter', icon: '🐦', url: config.social.twitter },
-    { name: 'Google Scholar', icon: '🎓', url: config.social.scholar },
+    { name: 'Google Scholar', icon: '🔵', url: config.social.scholar },
     { name: 'ORCID', icon: '🔬', url: config.social.orcid },
   ].filter((link) => link.url); // Only show links that are defined
 
@@ -42,7 +42,7 @@ export default function Footer({ config }: FooterProps) {
 
           {/* Right section - Social links */}
           <div className="flex flex-col items-start md:items-end">
-            <p className="text-sm text-gray-400 mb-4">Connect with me:</p>
+            <p className="text-sm text-gray-400 mb-4">Connect with me: <a href="mailto:thoailt@hcmue.edu.vn"><b>Email</b></a></p>
             <div className="flex flex-wrap gap-4">
               {socialLinks.map((link) => (
                 <a
@@ -64,7 +64,7 @@ export default function Footer({ config }: FooterProps) {
         {/* Bottom section - Copyright */}
         <div className="mt-8 pt-8 border-t border-gray-800 text-center text-sm text-gray-400">
           <p>
-            © {currentYear} {config.name}
+            © {currentYear} <a style={{ fontWeight: 'bold'}} href="https://thoailt.com">{config.name}</a>
           </p>
         </div>
       </div>
