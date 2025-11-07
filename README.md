@@ -276,4 +276,4 @@ Built with:
 
 **Live at:** [https://thoailt.com](https://thoailt.com)
 
-✉️ **Contact me:** [thoailt@hcmue.edu.vn](thoailt@hcmue.edu.vn)
+✉️ **Contact me:** <thoailt@hcmue.edu.vn>
