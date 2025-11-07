@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 /**
  * Header component with responsive navigation and smooth scroll
@@ -13,8 +14,24 @@ interface HeaderProps {
 }
 
 export default function Header({ config }: HeaderProps) {
+  const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Check if a navigation item is active
+  const isActive = (href: string) => {
+    // Remove trailing slash for comparison
+    const currentPath = router.pathname.replace(/\/$/, "");
+    const linkPath = href.replace(/\/$/, "");
+
+    // Exact match for home page
+    if (linkPath === "" || linkPath === "/") {
+      return currentPath === "" || currentPath === "/";
+    }
+
+    // For other pages, check if current path starts with link path
+    return currentPath === linkPath || currentPath.startsWith(linkPath + "/");
+  };
 
   // Track scroll position for header styling
   useEffect(() => {
@@ -22,25 +39,28 @@ export default function Header({ config }: HeaderProps) {
       setIsScrolled(window.scrollY > 20);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   // Handle navigation clicks - smooth scroll for hash links on same page
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
     // Close mobile menu
     setIsMobileMenuOpen(false);
 
     // Handle hash links on current page (e.g., /#about when on homepage)
-    if (href.includes('#')) {
-      const hash = href.split('#')[1];
+    if (href.includes("#")) {
+      const hash = href.split("#")[1];
       if (hash) {
         // If we're on the homepage or the link starts with /#
-        if (window.location.pathname === '/' || href.startsWith('/#')) {
+        if (window.location.pathname === "/" || href.startsWith("/#")) {
           e.preventDefault();
           const element = document.getElementById(hash);
           if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
+            element.scrollIntoView({ behavior: "smooth" });
           }
         }
       }
@@ -50,13 +70,19 @@ export default function Header({ config }: HeaderProps) {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white shadow-md' : 'bg-white/80 backdrop-blur-sm'
+        isScrolled ? "bg-white shadow-md" : "bg-white/80 backdrop-blur-sm"
       }`}
     >
-      <nav className="container-custom section-padding py-4" aria-label="Main navigation">
+      <nav
+        className="container-custom section-padding py-4"
+        aria-label="Main navigation"
+      >
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="text-2xl font-bold text-gray-900 hover:text-primary-600 transition-colors">
+          <Link
+            href="/"
+            className="text-2xl font-bold text-gray-900 hover:text-primary-600 transition-colors"
+          >
             {config.name}
           </Link>
 
@@ -67,7 +93,11 @@ export default function Header({ config }: HeaderProps) {
                 <a
                   href={item.href}
                   onClick={(e) => handleNavClick(e, item.href)}
-                  className="text-gray-700 hover:text-primary-600 font-medium transition-colors"
+                  className={`font-medium transition-colors ${
+                    isActive(item.href)
+                      ? "text-primary-600 font-semibold"
+                      : "text-gray-700 hover:text-primary-600"
+                  }`}
                 >
                   {item.name}
                 </a>
@@ -108,7 +138,11 @@ export default function Header({ config }: HeaderProps) {
                 <a
                   href={item.href}
                   onClick={(e) => handleNavClick(e, item.href)}
-                  className="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-primary-600 rounded-lg transition-colors"
+                  className={`block px-4 py-2 rounded-lg transition-colors ${
+                    isActive(item.href)
+                      ? "bg-primary-100 text-primary-600 font-semibold"
+                      : "text-gray-700 hover:bg-gray-100 hover:text-primary-600"
+                  }`}
                 >
                   {item.name}
                 </a>
