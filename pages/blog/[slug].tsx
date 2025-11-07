@@ -1,10 +1,10 @@
-import React from 'react';
-import { GetStaticProps, GetStaticPaths } from 'next';
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
-import { marked } from 'marked';
-import Layout from '@/components/Layout';
+import React from "react";
+import { GetStaticProps, GetStaticPaths } from "next";
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
+import { marked } from "marked";
+import Layout from "@/components/Layout";
 
 /**
  * Blog post detail page
@@ -23,7 +23,116 @@ interface BlogPostProps {
   slug: string;
 }
 
-export default function BlogPost({ config, frontmatter, content, slug }: BlogPostProps) {
+export default function BlogPost({
+  config,
+  frontmatter,
+  content,
+  slug,
+}: BlogPostProps) {
+  React.useEffect(() => {
+    // Load Prism.js for syntax highlighting
+    const loadPrism = () => {
+      // Load Prism CSS
+      if (!document.getElementById("prism-css")) {
+        const link = document.createElement("link");
+        link.id = "prism-css";
+        link.rel = "stylesheet";
+        link.href =
+          "https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css";
+        document.head.appendChild(link);
+      }
+
+      // Load Prism JS
+      if (!(window as any).Prism) {
+        const script = document.createElement("script");
+        script.src =
+          "https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js";
+        script.onload = () => {
+          // Load language plugins
+          const languages = [
+            "python",
+            "javascript",
+            "bash",
+            "typescript",
+            "jsx",
+            "tsx",
+            "html",
+            "css",
+            "json",
+          ];
+          languages.forEach((lang) => {
+            const langScript = document.createElement("script");
+            langScript.src = `https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-${lang}.min.js`;
+            langScript.onload = () => {
+              if ((window as any).Prism) {
+                (window as any).Prism.highlightAll();
+              }
+            };
+            document.head.appendChild(langScript);
+          });
+        };
+        document.head.appendChild(script);
+      } else {
+        (window as any).Prism.highlightAll();
+      }
+    };
+
+    loadPrism();
+
+    // Add copy buttons to all code blocks
+    const codeBlocks = document.querySelectorAll("pre code");
+
+    codeBlocks.forEach((codeBlock) => {
+      const pre = codeBlock.parentElement;
+      if (!pre) return;
+
+      // Skip if button already exists
+      if (pre.querySelector(".copy-button")) return;
+
+      // Add relative position to pre
+      pre.style.position = "relative";
+
+      // Create copy button
+      const button = document.createElement("button");
+      button.className =
+        "copy-button absolute right-2 top-2 w-7 h-7 flex items-center justify-center rounded bg-gray-800/70 hover:bg-gray-700/90 text-gray-300 hover:text-white opacity-0 group-hover:opacity-100 transition-all";
+      button.innerHTML = `
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+        </svg>
+      `;
+      button.title = "Copy code";
+
+      // Add hover class to pre for button visibility
+      pre.classList.add("group");
+
+      // Copy functionality
+      button.onclick = async () => {
+        const code = codeBlock.textContent || "";
+        try {
+          await navigator.clipboard.writeText(code);
+          // Show success icon
+          button.innerHTML = `
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+          `;
+          // Reset after 2 seconds
+          setTimeout(() => {
+            button.innerHTML = `
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+              </svg>
+            `;
+          }, 2000);
+        } catch (err) {
+          console.error("Failed to copy:", err);
+        }
+      };
+
+      pre.appendChild(button);
+    });
+  }, [content]);
   return (
     <Layout
       config={config}
@@ -119,7 +228,7 @@ export default function BlogPost({ config, frontmatter, content, slug }: BlogPos
  * Generate static paths for all blog posts
  */
 export const getStaticPaths: GetStaticPaths = async () => {
-  const postsDir = path.join(process.cwd(), 'posts');
+  const postsDir = path.join(process.cwd(), "posts");
 
   // Check if posts directory exists
   if (!fs.existsSync(postsDir)) {
@@ -129,11 +238,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
     };
   }
 
-  const files = fs.readdirSync(postsDir).filter((file) => file.endsWith('.md'));
+  const files = fs.readdirSync(postsDir).filter((file) => file.endsWith(".md"));
 
   const paths = files.map((filename) => ({
     params: {
-      slug: filename.replace('.md', ''),
+      slug: filename.replace(".md", ""),
     },
   }));
 
@@ -150,13 +259,13 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const slug = params?.slug as string;
 
   // Read site config
-  const configPath = path.join(process.cwd(), 'data', 'siteConfig.json');
-  const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+  const configPath = path.join(process.cwd(), "data", "siteConfig.json");
+  const config = JSON.parse(fs.readFileSync(configPath, "utf8"));
 
   // Read blog post
-  const postsDir = path.join(process.cwd(), 'posts');
+  const postsDir = path.join(process.cwd(), "posts");
   const filePath = path.join(postsDir, `${slug}.md`);
-  const fileContents = fs.readFileSync(filePath, 'utf8');
+  const fileContents = fs.readFileSync(filePath, "utf8");
 
   // Parse frontmatter and content
   const { data: frontmatter, content: markdownContent } = matter(fileContents);

@@ -37,7 +37,12 @@ html {
     @apply text-gray-900 bg-white;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-bold;
   }
 
@@ -103,6 +108,43 @@ html {
 
 .animate-fade-in {
   animation: fadeIn 0.6s ease-out;
+}
+
+/* Code block styles with copy button */
+.prose pre {
+  position: relative;
+  background: #1e293b !important;
+  border-radius: 0.5rem;
+  padding: 1rem !important;
+  overflow-x: auto;
+}
+
+.prose pre code {
+  background: transparent !important;
+  padding: 0 !important;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.prose pre:hover .copy-button {
+  opacity: 1;
+}
+
+/* Override Prism theme colors for better contrast */
+.prose pre[class*="language-"] {
+  background: #1e293b !important;
+}
+
+.prose code[class*="language-"] {
+  color: #e2e8f0 !important;
+  text-shadow: none;
+}
+
+/* Show copy button on mobile always */
+@media (max-width: 768px) {
+  .prose pre .copy-button {
+    opacity: 1 !important;
+  }
 }
 
 /* Print styles */
