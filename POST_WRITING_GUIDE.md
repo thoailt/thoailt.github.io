@@ -1,6 +1,6 @@
-# Blog Writing Guide
+# Post Writing Guide
 
-This guide explains how to write and format blog posts for this site. It covers frontmatter, headings, emphasis (bold/italic), images, code blocks (with syntax highlighting), alignment, captions, and a publish checklist.
+This guide explains how to write and format posts for this site. It covers frontmatter, headings, emphasis (bold/italic), images, code blocks (with syntax highlighting), alignment, captions, and a publish checklist.
 
 ---
 
@@ -14,8 +14,8 @@ title: "Your Post Title"
 date: "2025-11-07"
 author: "Your Name"
 tags: ["tag1", "tag2"]
-excerpt: "A short summary shown on the blog index"
-coverImage: "/images/blog/cover-image.jpg" # Optional: cover image
+excerpt: "A short summary shown on the post index"
+coverImage: "/images/posts/cover-image.jpg" # Optional: cover image
 ---
 ```
 
@@ -53,7 +53,9 @@ print("Hello, world!")
 ```
 </code></pre>
 
-The blog automatically adds a copy button to code blocks. Use the proper language (e.g., `python`, `bash`, `javascript`, `html`).
+## 5. Code blocks with syntax highlighting
+
+The site automatically adds a copy button to code blocks. Use the proper language (e.g., `python`, `bash`, `javascript`, `html`).
 
 ### Tips
 
@@ -68,7 +70,7 @@ To insert and center an image with a fixed width:
 
 ```html
 <div align="center">
-  <img src="/images/blog/diagram.png" alt="Diagram" width="600" />
+  <img src="/images/posts/diagram.png" alt="Diagram" width="600" />
 </div>
 ```
 
@@ -128,7 +130,7 @@ Always provide `alt` text for images for screen readers:
 
 ```html
 <img
-  src="/images/blog/photo.jpg"
+  src="/images/posts/photo.jpg"
   alt="Screenshot of the app showing the dashboard"
 />
 ```
@@ -142,7 +144,7 @@ date: "2025-11-07"
 author: "Your Name"
 tags: ["python", "beginner"]
 excerpt: "A short intro to Python."
-coverImage: "/images/blog/python-cover.jpg"
+coverImage: "/images/posts/python-cover.jpg"
 ---
 
 # Quick Python Example
@@ -156,13 +158,13 @@ print("Hello from Python")
 And a centered image:
 
 <div align="center">
-  <img src="/images/blog/diagram.png" alt="Diagram" width="200" />
+  <img src="/images/posts/diagram.png" alt="Diagram" width="200" />
 </div>
 ````
 
 ## 10. Social Sharing & Comments
 
-The blog automatically includes:
+The site automatically includes:
 
 - **Share buttons**: Facebook, Twitter, LinkedIn, and copy link
 - **Comments**: Powered by [utterances](https://utteranc.es/), a GitHub issue-based comment system
@@ -172,9 +174,9 @@ No additional setup is needed. Comments will appear once users authorize with th
 ## 11. Checklist before publishing
 
 - [ ] Frontmatter filled (title, date, excerpt, tags)
-- [ ] Cover image added (optional) and placed in `public/images/blog/`
+- [ ] Cover image added (optional) and placed in `public/images/posts/`
 - [ ] Code fences include language identifiers
-- [ ] Images placed in `public/images/blog/` and paths are correct
+- [ ] Images placed in `public/images/posts/` and paths are correct
 - [ ] Alt text for each image
 - [ ] Spell-check and proofread
 - [ ] Run `npm run export` locally to verify generation (optional)
@@ -183,7 +185,7 @@ No additional setup is needed. Comments will appear once users authorize with th
 
 1. Add the markdown file to `posts/` (filename should be `YYYY-MM-DD-slug.md`)
 2. `git add posts/YYYY-MM-DD-slug.md`
-3. `git commit -m "Add blog post: <title>"`
+3. `git commit -m "Add post: <title>"`
 4. `git push`
 
 GitHub Actions will run and deploy the site.

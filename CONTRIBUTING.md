@@ -10,7 +10,7 @@ You don't need to know React or programming to update your portfolio! Just edit 
 
 1. **Personal Info**: Edit `data/siteConfig.json`
 2. **Publications**: Edit `data/publications.json`
-3. **Blog Posts**: Add new `.md` files in `posts/` folder
+3. **Posts**: Add new `.md` files in `posts/` folder
 
 ### Updating Personal Information
 
@@ -28,6 +28,7 @@ You don't need to know React or programming to update your portfolio! Just edit 
 5. Save the file
 
 Example:
+
 ```json
 {
   "id": "pub-1",
@@ -44,28 +45,9 @@ Example:
 }
 ```
 
-### Writing a New Blog Post
+### Writing a New Post
 
-1. Create a new file in `posts/` folder
-2. Name it: `YYYY-MM-DD-post-title.md` (e.g., `2024-03-15-my-post.md`)
-3. Add frontmatter at the top:
-
-```markdown
----
-title: "My Blog Post Title"
-date: "2024-03-15"
-author: "Your Name"
-tags: ["Tag1", "Tag2"]
-excerpt: "Brief description"
----
-
-# My Blog Post Title
-
-Your content here...
-```
-
-4. Write your content using Markdown
-5. Save the file
+Create a new Markdown file in the `posts/` directory with the format `YYYY-MM-DD-title.md`:
 
 ### HTML Formatting in JSON Files
 
@@ -102,7 +84,7 @@ npm run export
 - **Components**: Reusable React components
 - **Pages**: Next.js pages (file-based routing)
 - **Data**: JSON configuration files
-- **Posts**: Markdown blog posts
+- **Posts**: Markdown posts
 - **Public**: Static assets
 
 ### Making Code Changes
@@ -149,6 +131,7 @@ Before deploying:
 The site auto-deploys via GitHub Actions when you push to `main` branch.
 
 Manual deployment:
+
 ```bash
 npm run export
 # Upload /out folder to hosting
@@ -200,6 +183,7 @@ Edit `data/siteConfig.json`:
 ### Modifying Layout
 
 Edit `components/Layout.tsx` to change:
+
 - Header placement
 - Footer content
 - Overall page structure
@@ -235,18 +219,19 @@ Edit `components/Layout.tsx` to change:
 
 ## Important Files
 
-| File | Purpose |
-|------|---------|
-| `data/siteConfig.json` | Personal info, SEO, navigation, education, awards |
-| `data/publications.json` | Publications list |
-| `posts/*.md` | Blog posts |
-| `public/CNAME` | Custom domain configuration |
-| `next.config.js` | Next.js build settings |
-| `.github/workflows/deploy.yml` | GitHub Actions deployment |
+| File                           | Purpose                                           |
+| ------------------------------ | ------------------------------------------------- |
+| `data/siteConfig.json`         | Personal info, SEO, navigation, education, awards |
+| `data/publications.json`       | Publications list                                 |
+| `posts/*.md`                   | Blog posts                                        |
+| `public/CNAME`                 | Custom domain configuration                       |
+| `next.config.js`               | Next.js build settings                            |
+| `.github/workflows/deploy.yml` | GitHub Actions deployment                         |
 
 ## Questions?
 
 Feel free to:
+
 - Open an issue on GitHub
 - Reach out via contact info in your portfolio
 - Refer to the documentation links in README

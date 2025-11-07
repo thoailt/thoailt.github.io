@@ -15,7 +15,7 @@
 
   "seo": {
     "title": "Thoai Le",
-    "description": "Portfolio website showcasing my publications and blog posts in software engineering and research.",
+    "description": "Portfolio website showcasing my publications and posts in software engineering and research.",
     "keywords": "software engineer, researcher, machine learning, web development, portfolio",
     "author": "Thoai Le",
     "siteUrl": "https://thoailt.com",
@@ -25,7 +25,7 @@
   "navigation": [
     { "name": "About", "href": "/about" },
     { "name": "Publications", "href": "/publications" },
-    { "name": "Blog", "href": "/blog" },
+    { "name": "Posts", "href": "/posts" },
     { "name": "Contact", "href": "/contact" }
   ],
 

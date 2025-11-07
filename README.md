@@ -7,7 +7,7 @@ A beautiful, modern portfolio website built with Next.js, TypeScript, and Tailwi
 - 🎨 **Modern Design**: Clean, professional UI with Tailwind CSS
 - 📱 **Fully Responsive**: Works perfectly on all devices
 - 🚀 **Fast Performance**: Static site generation for optimal speed
-- 📝 **Markdown Blog**: Write blog posts in Markdown
+- 📝 **Markdown Posts**: Write posts in Markdown
 - 🎓 **Education & Awards**: Showcase your academic achievements
 - 📚 **Publications**: IEEE-style citations, sortable by year
 - 📧 **Contact Form**: Integrated contact form with multiple options
@@ -55,12 +55,12 @@ portfolio-website/
 │   ├── index.tsx       # Homepage
 │   ├── about/          # About page
 │   ├── publications/   # Publications page
-│   ├── blog/          # Blog pages
+│   ├── posts/          # Post pages
 │   └── contact/       # Contact page
 ├── data/              # JSON configuration
 │   ├── siteConfig.json   # Site settings, SEO, education, awards
 │   └── publications.json # Publications data
-├── posts/             # Markdown blog posts
+├── posts/             # Markdown posts
 ├── public/            # Static assets
 │   ├── CNAME          # Custom domain configuration
 │   ├── images/        # Images
@@ -116,25 +116,25 @@ Edit `data/publications.json`:
 ]
 ```
 
-### 4. Write Blog Posts
+### 4. Write Posts
 
 Create Markdown files in `posts/`:
 
 ```markdown
 ---
-title: "Your Blog Post Title"
+title: "Your Post Title"
 date: "2024-11-07"
 author: "Your Name"
 tags: ["Tag1", "Tag2"]
 excerpt: "Brief description..."
 ---
 
-# Your Blog Post
+# Your Post
 
 Content here...
 ```
 
-For formatting tips, image sizing, code blocks and metadata examples see: [BLOG_WRITING_GUIDE.md](BLOG_WRITING_GUIDE.md)
+For formatting tips, image sizing, code blocks and metadata examples see: [`POST_WRITING_GUIDE.md`](POST_WRITING_GUIDE.md)
 
 ### 5. Add Images
 
@@ -218,10 +218,10 @@ git push origin main
 
 ### Pages
 
-- **Home** (`/`): Hero with avatar, recent publications, latest blog posts
+- **Home** (`/`): Hero with avatar, recent publications, latest posts
 - **About** (`/about`): Full bio, education, awards & honors
 - **Publications** (`/publications`): All publications with filters
-- **Blog** (`/blog`): All blog posts with search
+- **Post** (`/posts`): All posts with search
 - **Contact** (`/contact`): Contact form and information
 
 ### Components
@@ -235,7 +235,7 @@ git push origin main
 ## 📚 Documentation
 
 - [Deployment Guide](DEPLOYMENT_GUIDE.md) - Complete deployment instructions
-- [Blog Writing Guide](BLOG_WRITING_GUIDE.md) - How to write blog
+- [Post Writing Guide](POST_WRITING_GUIDE.md) - How to write posts
 - [Contact Form Setup](CONTACT_FORM_SETUP.md) - Email integration guide
 - [Contributing Guide](CONTRIBUTING.md) - How to customize the site
 

@@ -1,15 +1,15 @@
-import React, { useState, useMemo } from 'react';
-import { GetStaticProps } from 'next';
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
-import Layout from '@/components/Layout';
+import React, { useState, useMemo } from "react";
+import { GetStaticProps } from "next";
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
+import Layout from "@/components/Layout";
 
 /**
- * Blog listing page
- * Displays all blog posts with search and filter functionality
+ * Post listing page
+ * Displays all posts with search and filter functionality
  */
-interface BlogPost {
+interface Post {
   slug: string;
   title: string;
   date: string;
@@ -18,13 +18,13 @@ interface BlogPost {
   excerpt: string;
 }
 
-interface BlogIndexProps {
+interface PostIndexProps {
   config: any;
-  posts: BlogPost[];
+  posts: Post[];
 }
 
-export default function BlogIndex({ config, posts }: BlogIndexProps) {
-  const [searchTerm, setSearchTerm] = useState('');
+export default function PostIndex({ config, posts }: PostIndexProps) {
+  const [searchTerm, setSearchTerm] = useState("");
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
 
   // Get all unique tags
@@ -50,15 +50,16 @@ export default function BlogIndex({ config, posts }: BlogIndexProps) {
   return (
     <Layout
       config={config}
-      title={`Blog | ${config.name}`}
+      title={`Posts | ${config.name}`}
       description="Technical articles, tutorials, and thoughts on software development and research"
     >
       {/* Header Section */}
       <section className="section-padding bg-gradient-to-br from-primary-50 to-white">
         <div className="container-custom max-w-4xl text-center">
-          <h1 className="text-5xl font-bold mb-4 text-gradient pb-4">Blog</h1>
+          <h1 className="text-5xl font-bold mb-4 text-gradient pb-4">Posts</h1>
           <p className="text-xl text-gray-600">
-            Technical articles, tutorials, and insights on software development and research
+            Technical articles, tutorials, and insights on software development
+            and research
           </p>
         </div>
       </section>
@@ -69,11 +70,11 @@ export default function BlogIndex({ config, posts }: BlogIndexProps) {
           <div className="mb-8">
             <input
               type="text"
-              placeholder="Search blog posts..."
+              placeholder="Search posts..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-              aria-label="Search blog posts"
+              aria-label="Search posts"
             />
           </div>
 
@@ -86,8 +87,8 @@ export default function BlogIndex({ config, posts }: BlogIndexProps) {
                   onClick={() => setSelectedTag(null)}
                   className={`px-4 py-2 rounded-lg transition-colors ${
                     selectedTag === null
-                      ? 'bg-primary-600 text-white'
-                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                      ? "bg-primary-600 text-white"
+                      : "bg-gray-200 text-gray-700 hover:bg-gray-300"
                   }`}
                 >
                   All Posts
@@ -98,8 +99,8 @@ export default function BlogIndex({ config, posts }: BlogIndexProps) {
                     onClick={() => setSelectedTag(tag)}
                     className={`px-4 py-2 rounded-lg transition-colors ${
                       selectedTag === tag
-                        ? 'bg-primary-600 text-white'
-                        : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                        ? "bg-primary-600 text-white"
+                        : "bg-gray-200 text-gray-700 hover:bg-gray-300"
                     }`}
                   >
                     {tag}
@@ -114,10 +115,12 @@ export default function BlogIndex({ config, posts }: BlogIndexProps) {
             <div className="grid md:grid-cols-2 gap-6">
               {filteredPosts.map((post) => (
                 <article key={post.slug} className="card p-6 flex flex-col">
-                  <time className="text-sm text-gray-500 mb-2">{post.date}</time>
+                  <time className="text-sm text-gray-500 mb-2">
+                    {post.date}
+                  </time>
                   <h2 className="text-2xl font-bold text-gray-900 mb-3">
                     <a
-                      href={`/blog/${post.slug}`}
+                      href={`/posts/${post.slug}`}
                       className="hover:text-primary-600 transition-colors"
                     >
                       {post.title}
@@ -140,12 +143,22 @@ export default function BlogIndex({ config, posts }: BlogIndexProps) {
                   )}
 
                   <a
-                    href={`/blog/${post.slug}`}
+                    href={`/posts/${post.slug}`}
                     className="text-primary-600 hover:text-primary-700 font-medium inline-flex items-center gap-2"
                   >
                     Read more
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
                     </svg>
                   </a>
                 </article>
@@ -153,7 +166,9 @@ export default function BlogIndex({ config, posts }: BlogIndexProps) {
             </div>
           ) : (
             <div className="text-center py-12">
-              <p className="text-gray-500 text-lg">No blog posts found matching your criteria.</p>
+              <p className="text-gray-500 text-lg">
+                No posts found matching your criteria.
+              </p>
             </div>
           )}
         </div>
@@ -163,32 +178,34 @@ export default function BlogIndex({ config, posts }: BlogIndexProps) {
 }
 
 /**
- * Get all blog posts at build time
+ * Get all posts at build time
  */
 export const getStaticProps: GetStaticProps = async () => {
-  const configPath = path.join(process.cwd(), 'data', 'siteConfig.json');
-  const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+  const configPath = path.join(process.cwd(), "data", "siteConfig.json");
+  const config = JSON.parse(fs.readFileSync(configPath, "utf8"));
 
-  const postsDir = path.join(process.cwd(), 'posts');
-  let posts: BlogPost[] = [];
+  const postsDir = path.join(process.cwd(), "posts");
+  let posts: Post[] = [];
 
   if (fs.existsSync(postsDir)) {
-    const postFiles = fs.readdirSync(postsDir).filter((file) => file.endsWith('.md'));
+    const postFiles = fs
+      .readdirSync(postsDir)
+      .filter((file) => file.endsWith(".md"));
 
     posts = postFiles
       .map((filename) => {
-        const slug = filename.replace('.md', '');
+        const slug = filename.replace(".md", "");
         const filePath = path.join(postsDir, filename);
-        const fileContents = fs.readFileSync(filePath, 'utf8');
+        const fileContents = fs.readFileSync(filePath, "utf8");
         const { data } = matter(fileContents);
 
         return {
           slug,
           title: data.title || slug,
-          date: data.date || '',
+          date: data.date || "",
           author: data.author || config.name,
           tags: data.tags || [],
-          excerpt: data.excerpt || 'Read this blog post to learn more...',
+          excerpt: data.excerpt || "Read this blog post to learn more...",
         };
       })
       .sort((a, b) => {

@@ -9,10 +9,10 @@ import ShareButtons from "@/components/ShareButtons";
 import Comments from "@/components/Comments";
 
 /**
- * Blog post detail page
- * Renders individual blog posts from Markdown files
+ * Post detail page
+ * Renders individual posts from Markdown files
  */
-interface BlogPostProps {
+interface PostProps {
   config: any;
   frontmatter: {
     title: string;
@@ -34,14 +34,14 @@ interface BlogPostProps {
   } | null;
 }
 
-export default function BlogPost({
+export default function Post({
   config,
   frontmatter,
   content,
   slug,
   prevPost,
   nextPost,
-}: BlogPostProps) {
+}: PostProps) {
   // Determine the image for SEO and sharing
   const shareImage = frontmatter.coverImage
     ? frontmatter.coverImage
@@ -49,7 +49,7 @@ export default function BlogPost({
 
   const fullUrl = `${
     config.seo?.siteUrl || "https://thoailt.com"
-  }/blog/${slug}`;
+  }/posts/${slug}`;
 
   React.useEffect(() => {
     // Load Prism.js for syntax highlighting
@@ -167,7 +167,7 @@ export default function BlogPost({
         <div className="container-custom max-w-4xl">
           {/* Back link */}
           <a
-            href="/blog"
+            href="/posts"
             className="inline-flex items-center text-primary-600 hover:text-primary-700 mb-8 transition-colors"
           >
             <svg
@@ -183,7 +183,7 @@ export default function BlogPost({
                 d="M10 19l-7-7m0 0l7-7m-7 7h18"
               />
             </svg>
-            Back to Blog
+            Back to Posts
           </a>
 
           {/* Post header */}
@@ -250,7 +250,7 @@ export default function BlogPost({
                 <div className="flex">
                   {prevPost ? (
                     <a
-                      href={`/blog/${prevPost.slug}`}
+                      href={`/posts/${prevPost.slug}`}
                       className="group flex items-start gap-3 p-4 rounded-lg border border-gray-200 hover:border-primary-500 hover:bg-primary-50 transition-all w-full"
                     >
                       <svg
@@ -288,7 +288,7 @@ export default function BlogPost({
                 <div className="flex justify-end">
                   {nextPost ? (
                     <a
-                      href={`/blog/${nextPost.slug}`}
+                      href={`/posts/${nextPost.slug}`}
                       className="group flex items-start gap-3 p-4 rounded-lg border border-gray-200 hover:border-primary-500 hover:bg-primary-50 transition-all w-full text-right"
                     >
                       <div className="flex-1 min-w-0">
@@ -327,7 +327,7 @@ export default function BlogPost({
           {/* Post footer */}
           <footer className="mt-12 pt-8 border-t border-gray-200">
             <a
-              href="/blog"
+              href="/posts"
               className="inline-flex items-center text-primary-600 hover:text-primary-700 transition-colors"
             >
               <svg
@@ -353,7 +353,7 @@ export default function BlogPost({
 }
 
 /**
- * Generate static paths for all blog posts
+ * Generate static paths for all posts
  */
 export const getStaticPaths: GetStaticPaths = async () => {
   const postsDir = path.join(process.cwd(), "posts");
@@ -381,7 +381,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 /**
- * Get static props for individual blog post
+ * Get static props for individual post
  */
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const slug = params?.slug as string;
@@ -390,7 +390,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const configPath = path.join(process.cwd(), "data", "siteConfig.json");
   const config = JSON.parse(fs.readFileSync(configPath, "utf8"));
 
-  // Read blog post
+  // Read post
   const postsDir = path.join(process.cwd(), "posts");
   const filePath = path.join(postsDir, `${slug}.md`);
   const fileContents = fs.readFileSync(filePath, "utf8");
