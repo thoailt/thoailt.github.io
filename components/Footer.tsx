@@ -21,10 +21,10 @@ export default function Footer({ config }: FooterProps) {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    { name: 'GitHub', icon: '🔵', url: config.social.github },
-    { name: 'LinkedIn', icon: '🔵', url: config.social.linkedin },
+    { name: 'GitHub', icon: '', url: config.social.github },
+    { name: 'LinkedIn', icon: '', url: config.social.linkedin },
     { name: 'Twitter', icon: '🐦', url: config.social.twitter },
-    { name: 'Google Scholar', icon: '🔵', url: config.social.scholar },
+    { name: 'Google Scholar', icon: '', url: config.social.scholar },
     { name: 'ORCID', icon: '🔬', url: config.social.orcid },
   ].filter((link) => link.url); // Only show links that are defined
 
