@@ -282,7 +282,7 @@ export default function Home({
                       {post.excerpt}
                     </p>
                     <a
-                      href={`/blog/${post.slug}`}
+                      href={`/posts/${post.slug}`}
                       className="text-primary-600 hover:text-primary-700 font-medium inline-flex items-center gap-2"
                     >
                       Read more
