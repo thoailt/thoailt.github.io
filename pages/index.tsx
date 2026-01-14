@@ -20,6 +20,25 @@ export default function Home({
   recentPublications,
   recentBlogPosts,
 }: HomeProps) {
+  // Function to format authors with highlighting
+  const formatAuthors = (authors: string[]) => {
+    const myNames = ["T.-T. Le", "L. T. Thoai", "Le Thanh Thoai", "Thoai Le"];
+
+    return authors.map((author, idx) => {
+      const isLastAuthor = idx === authors.length - 1;
+      const isSecondToLast = idx === authors.length - 2;
+      const separator = isLastAuthor ? "" : isSecondToLast ? " and " : ", ";
+      const isHighlighted = myNames.includes(author);
+
+      return (
+        <span key={idx}>
+          <span className={isHighlighted ? "font-bold" : ""}>{author}</span>
+          {separator}
+        </span>
+      );
+    });
+  };
+
   return (
     <Layout config={config}>
       {/* Hero Section with Avatar */}
@@ -218,7 +237,7 @@ export default function Home({
                       {pub.title}
                     </h3>
                     <p className="text-gray-700 mb-2">
-                      {pub.authors.join(", ")}
+                      {formatAuthors(pub.authors)}
                     </p>
                     <p className="text-gray-600 text-sm mb-3">
                       <span className="italic">{pub.venue}</span>, {pub.year}
