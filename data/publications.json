@@ -78,5 +78,22 @@
       "Youth Union Affairs",
       "Vietnam National Union of Students"
     ]
+  },
+  {
+    "id": "pub-5",
+    "title": "Product information lookup system based on images.",
+    "authors": ["L. T. Thoai", "H. A. Du", "Hai Tran"],
+    "venue": "Proceedings of the HCMUE Student Scientific Research Conference 2021-2022",
+    "location": "Vietnam",
+    "year": "2022",
+    "pages": "13-22",
+    "pdf": "/papers/product-information-lookup.pdf",
+    "abstract": "Image-based product search has become increasingly popular due to its convenience and effectiveness in identifying visually similar items. However, many e-commerce platforms in Vietnam have not yet fully integrated image-based retrieval systems. In this study, we propose a product information retrieval system that leverages deep learning models for visual feature extraction and clustering to identify products that closely resemble a given query image. The proposed system is evaluated on the TIKI fashion dataset, which consists of 1,534 product groups. Experimental results demonstrate that the system achieves an accuracy of 99.12% for retrieving the top-1 most similar product, with a gradual decrease in accuracy for lower-ranked results. These findings indicate that the proposed approach is effective for image-based product retrieval and provides a promising foundation for deploying visual search functionality in Vietnamese e-commerce platforms.",
+    "type": "conference",
+    "tags": [
+      "Similar Product Retrieval",
+      "Image-Based Search",
+      "Deep Learning"
+    ]
   }
 ]
