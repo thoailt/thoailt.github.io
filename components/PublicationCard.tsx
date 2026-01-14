@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 /**
  * PublicationCard component for displaying publication information
@@ -16,7 +16,7 @@ interface Publication {
   doi?: string;
   pdf?: string;
   abstract?: string;
-  type: 'journal' | 'conference' | 'magazine' | 'workshop';
+  type: "journal" | "conference" | "magazine" | "workshop";
   tags?: string[];
 }
 
@@ -27,22 +27,23 @@ interface PublicationCardProps {
 
 /**
  * Formats authors in IEEE style
- * Highlights the current user's name (assuming "Your Name" is the user)
+ * Highlights the current user's name
  */
 function formatAuthors(authors: string[]): JSX.Element[] {
+  // List of author name variations to highlight
+  const myNames = ["T.-T. Le", "L. T. Thoai", "Le Thanh Thoai", "Thoai Le"];
+
   return authors.map((author, idx) => {
     const isLastAuthor = idx === authors.length - 1;
     const isSecondToLast = idx === authors.length - 2;
-    const separator = isLastAuthor ? '' : isSecondToLast ? ' and ' : ', ';
+    const separator = isLastAuthor ? "" : isSecondToLast ? " and " : ", ";
 
-    // Highlight "Your Name" - you can customize this
-    const isHighlighted = author === 'Your Name';
+    // Highlight user's name in any of its variations
+    const isHighlighted = myNames.includes(author);
 
     return (
       <span key={idx}>
-        <span className={isHighlighted ? 'font-semibold' : ''}>
-          {author}
-        </span>
+        <span className={isHighlighted ? "font-bold" : ""}>{author}</span>
         {separator}
       </span>
     );
@@ -53,16 +54,16 @@ function formatAuthors(authors: string[]): JSX.Element[] {
  * Generates IEEE-style citation
  */
 function generateIEEECitation(pub: Publication): string {
-  const authors = pub.authors.join(', ');
+  const authors = pub.authors.join(", ");
   let citation = `${authors}, "${pub.title}," `;
 
-  if (pub.type === 'journal' || pub.type === 'magazine') {
+  if (pub.type === "journal" || pub.type === "magazine") {
     citation += `${pub.venue}`;
     if (pub.volume) citation += `, vol. ${pub.volume}`;
     if (pub.issue) citation += `, no. ${pub.issue}`;
     if (pub.pages) citation += `, pp. ${pub.pages}`;
     citation += `, ${pub.year}.`;
-  } else if (pub.type === 'conference' || pub.type === 'workshop') {
+  } else if (pub.type === "conference" || pub.type === "workshop") {
     citation += `in ${pub.venue}`;
     if (pub.pages) citation += `, pp. ${pub.pages}`;
     citation += `, ${pub.year}.`;
@@ -75,7 +76,10 @@ function generateIEEECitation(pub: Publication): string {
   return citation;
 }
 
-export default function PublicationCard({ publication, index }: PublicationCardProps) {
+export default function PublicationCard({
+  publication,
+  index,
+}: PublicationCardProps) {
   const [showAbstract, setShowAbstract] = React.useState(false);
 
   return (
@@ -109,7 +113,7 @@ export default function PublicationCard({ publication, index }: PublicationCardP
           {/* DOI */}
           {publication.doi && (
             <p className="text-sm text-gray-500 mb-3">
-              DOI:{' '}
+              DOI:{" "}
               <a
                 href={`https://doi.org/${publication.doi}`}
                 target="_blank"
@@ -143,7 +147,7 @@ export default function PublicationCard({ publication, index }: PublicationCardP
                 className="text-sm text-primary-600 hover:text-primary-700 font-medium"
                 aria-expanded={showAbstract}
               >
-                {showAbstract ? '− Hide Abstract' : '+ Show Abstract'}
+                {showAbstract ? "− Hide Abstract" : "+ Show Abstract"}
               </button>
               {showAbstract && (
                 <p className="mt-2 text-sm text-gray-600 pl-4 border-l-2 border-primary-200 animate-fade-in">
@@ -163,8 +167,18 @@ export default function PublicationCard({ publication, index }: PublicationCardP
                 className="flex items-center gap-1 text-sm text-primary-600 hover:text-primary-700 font-medium transition-colors"
                 aria-label={`Download PDF of ${publication.title}`}
               >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                  />
                 </svg>
                 PDF
               </a>
